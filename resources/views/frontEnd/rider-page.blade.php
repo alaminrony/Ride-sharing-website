@@ -51,6 +51,7 @@
         </div>
     </div>
 </section>
+
 <!-- Rider Book area -->
 <section class="rider-book">
     <div class="container">
@@ -62,27 +63,25 @@
                             How to Book a <span><img class="img-fluid" src="{{asset('frontEnd/assets/img/rider-page/logo.png')}}" alt=""></span> ride
                         </h1>
                     </div>
-                    <!-- Swiper -->
-                    <div class="swiper-container s2">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="rider-book-img">
-                                    <img class="img-fluid" src="{{asset('frontEnd/assets/img/rider-page/mobile.png')}}" alt="">
+                    <div class="rider-book-img d-done d-sm-none d-md-none d-lg-block">
+                        <img class="img-fluid" src="{{asset('frontEnd/assets/img/rider-page-mobile.png')}}" alt="">
+                        <div class="img-over-rider">
+                            <!-- Swiper -->
+                            <div class="swiper-container riderPageSlider">
+                                <div class="swiper-wrapper">
+                                    @if($passengerSlider->isNotEmpty())
+                                    @foreach($passengerSlider as $slider)
+                                    <div class="swiper-slide">
+                                        <img class="img-fluid" src="{{asset($slider->image)}}" alt="">
+                                    </div>
+                                    @endforeach
+                                    @endif
+
                                 </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="rider-book-img">
-                                    <img class="img-fluid" src="{{asset('frontEnd/assets/img/rider-page/mobile.png')}}" alt="">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="rider-book-img">
-                                    <img class="img-fluid" src="{{asset('frontEnd/assets/img/rider-page/mobile.png')}}" alt="">
-                                </div>
+                                <!-- Add Pagination -->
+                                <div class="swiper-pagination swiper-pagination5"></div>
                             </div>
                         </div>
-                        <!-- Add Pagination -->
-                        <div class="swiper-pagination"></div>
                     </div>
                     <div class="rider-booking-content text-center">
                         <span>3</span>
@@ -150,7 +149,7 @@
                         @else
                         <a href="{{url('passenger-signup')}}" class="btn btn-defalt btn-lg sign_up_btn">Sign Up to ride</a>
                         @endif
-                        
+
                     </form>
                     <p class="fare_discrimination">Sample ride prices are estimates only and do not reflect variations due to discounts,
                         geography, traffect delayeys, or other factors.

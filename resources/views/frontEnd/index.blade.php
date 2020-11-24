@@ -17,7 +17,6 @@
                                 </ul>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -37,34 +36,30 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-6 zIndex animate__animated animate__fadeInRight animate__delay-2s">
+            <div class="col-lg-5 zIndex animate__animated animate__fadeInRight animate__delay-2s">
                 <div class="phone_slider_navigation">
                     <img src="{{asset('frontEnd/assets/img/just-mobile.png')}}" alt="just-mobile" class="img-fluid">
-                    <!-- Swiper -->
-                    <div class="swiper-container img-over s1">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="">
-                                    <img src="{{asset('frontEnd/assets/img/mobile_slider.jpg')}}" alt="mobile" class="img-fluid">
+                    <div class="img-over">
+                        <!-- Swiper -->
+                        <div class="swiper-container sTest">
+                            <div class="swiper-wrapper">
+                                @if($homeSlider->isNotEmpty())
+                                @foreach($homeSlider as $slider)
+                                <div class="swiper-slide">
+                                    <div class="overSliderimg">
+                                        <img src="{{asset($slider->image)}}" alt="mobile" class="img-fluid">
+                                    </div>
                                 </div>
+                                @endforeach
+                                @endif
                             </div>
-                            <div class="swiper-slide">
-                                <div class="">
-                                    <img src="{{asset('frontEnd/assets/img/mobile_slider.jpg')}}" alt="mobile" class="img-fluid">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="">
-                                    <img src="{{asset('frontEnd/assets/img/mobile_slider.jpg')}}" alt="mobile" class="img-fluid">
-                                </div>
-                            </div>
+                            <!-- Add Pagination -->
+                            <div class="swiper-pagination swiper-pagination3"></div>
                         </div>
-                        <!-- Add Pagination -->
-                        <div class="swiper-pagination swiper-pagination"></div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-12 col-md-6 animate__animated animate__fadeInLeft animate__delay-2s">                        
+            <div class="col-sm-12 col-md-7 animate__animated animate__fadeInLeft animate__delay-2s">                        
                 <div class="phone_slider">
                     <img class="img-fluid" src="{{asset('frontEnd/assets/img/home_page_illustration.png')}}" alt="">
                 </div> 

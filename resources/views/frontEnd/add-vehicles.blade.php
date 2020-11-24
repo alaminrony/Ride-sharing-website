@@ -155,7 +155,6 @@
 @endsection
 @push('script')
 <script type="text/javascript">
-    $(document).ready(function () {
         $(document).on('click', '#addImage', function (event) {
             event.preventDefault();
             $('#browsCarAdd').click();
@@ -231,10 +230,5 @@
                 }
             });
         });
-
-
-
-
-    });
 </script>
 @endpush

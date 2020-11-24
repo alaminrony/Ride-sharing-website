@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\verifyEmail;
 use App\Driver;
+use App\DriverBill;
 use App\OtpVerify;
 use Validator;
 use Session;
@@ -17,6 +18,7 @@ use App\Cab;
 use App\CabRide;
 use App\RideStatus;
 use App\Notification;
+use App\DriverSlider;
 use App\Passenger;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -890,5 +892,25 @@ class DriverLoginController extends Controller {
             return response()->json(['response' => 'error', 'message' => 'Password does not reset']);
         }
     }
+    
+    public function myBill(Request $request){
+        if (!empty($request->driverId)) {
+            $driver = Driver::findOrFail($request->driverId);
+        } else {
+            return abort(404);
+        }
+        
+        $driverBill = DriverBill::orderBy('id','desc')->get();
+//        echo "<pre>";print_r($driverBill->toArray());exit;
+        
+        return view('frontEnd.my-bill')->with(compact('driver','driverBill'));
+    }
+    
+    public function driverPage(Request $request){
+        $driverSlider = DriverSlider::where('status','1')->latest()->take(5)->get();
+        return view('frontEnd.driver-page',compact('driverSlider'));
+    }
+    
+    
 
 }

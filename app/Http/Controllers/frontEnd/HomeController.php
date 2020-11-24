@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\LatestNews;
 use App\User;
 use App\AdminBillSetting;
+use App\HomeSlider;
+use App\CmsPage;
 use DB;
 use Validator;
 
@@ -14,8 +16,9 @@ class HomeController extends Controller {
 
     public function index() {
         $latestNews = LatestNews::where('status', '1')->latest()->take(3)->get();
-//        echo "<pre>";print_r($latestNews->toArray());exit;
-        return view('frontEnd.index')->with(compact('latestNews'));
+        $homeSlider = HomeSlider::where('status', '1')->latest()->take(5)->get();
+        $title = 'Home';
+        return view('frontEnd.index')->with(compact('latestNews','homeSlider','title'));
     }
 
     public function listLatestNews(Request $request) {
@@ -114,17 +117,23 @@ class HomeController extends Controller {
     }
     
     public function safetyPage(){
-        return view('frontEnd.safety');
+        $cmsPage  = CmsPage::where('status','1')->where('id','4')->first();
+        return view('frontEnd.safety')->with(compact('cmsPage'));
     }
     
     public function termsAndCondition(){
-        return view('frontEnd.terms-condition');
+         $cmsPage  = CmsPage::where('status','1')->where('id','2')->first();
+//        echo "<pre>";print_r($cmsPage->toArray());exit;
+         $title = $cmsPage->title;
+        return view('frontEnd.terms-condition')->with(compact('cmsPage','title'));
     }
     public function faqPage(){
         return view('frontEnd.faq');
     }
     public function guideline(){
-        return view('frontEnd.guideline');
+         $cmsPage  = CmsPage::where('status','1')->where('id','3')->first();
+//         echo "<pre>";print_r($cmsPage);exit;
+        return view('frontEnd.guideline')->with(compact('cmsPage','title'));
     }
 
 }

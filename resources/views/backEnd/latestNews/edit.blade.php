@@ -36,13 +36,10 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="input-group col-md-6">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="nc-icon nc-single-02"></i>
-                                    </span>
-                                </div>
-                                {!! Form::textarea('description',$latestNews->description,['class' => 'form-control','placeholder' =>Lang::get('lang.DESCRIPTION')]) !!}
+                            <div class="input-group col-md-8">
+                                <textarea name="description" class="form-control" id="editor">
+                                    {{$latestNews->description }}
+                                </textarea>
                                 @if ($errors->has('description'))
                                 <span class="invalid-feedback" style="display: block;" role="alert">
                                     <strong>{{ $errors->first('description') }}</strong>
@@ -91,7 +88,7 @@
                                     </span>
                                 </div>
                                 {!! Form::file('details_image',['class' => 'form-control','placeholder' =>Lang::get('lang.PROFILE_PHOTO')]) !!}
-                                 <img src="{{asset($latestNews->details_image)}}" width="70px">
+                                <img src="{{asset($latestNews->details_image)}}" width="70px">
                                 @if ($errors->has('details_image'))
                                 <span class="invalid-feedback" style="display: block;" role="alert">
                                     <strong>{{ $errors->first('details_image') }}</strong>
@@ -99,7 +96,6 @@
                                 @endif
                             </div>
                         </div>
-
                         <div class="card-footer ">
                             <button type="submit" class="btn btn-info btn-round">{{ __('Update') }}</button>
                             <a href="{{route('latest-news.index')}}" class="btn btn-warning btn-round">Cancel</a>
@@ -112,3 +108,9 @@
     </div>
 </div>
 @endsection
+<!--@push('scripts')
+<script type="text/javascript">
+           var editor = new Jodit('#editor');
+            editor.value = '{!!$latestNews->description!!}';
+</script>
+@endpush-->

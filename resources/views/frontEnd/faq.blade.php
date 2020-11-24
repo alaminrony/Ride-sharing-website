@@ -20,7 +20,7 @@
 </section>
 
 <!-- Frequently area  -->
-<section id="frequently-area" class="frequently-area">
+<section id="frequently-area" class="frequently-area pb-5">
     <div class="container">
         <div class="frequently-header text-center">
             <h3>Frequently asked questions</h3>

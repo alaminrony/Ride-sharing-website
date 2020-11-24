@@ -1,5 +1,5 @@
 <body onload="myFunction()">
-    <!--<div id="loading"></div>-->
+    <div id="loading"></div>
     <div id='ajaxLoader' style='display: none;'></div>
     <?php use App\CustomMethod;?>
     <!--[if lt IE 7]>

@@ -29,7 +29,6 @@
 @endsection
 @push('script')
 <script type="text/javascript">
-    $(document).ready(function () {
         $(document).on('click', '#passUpdateBtn', function (event) {
             event.preventDefault();
             var updatePassword = new FormData($('#updatePasswordForm')[0]);
@@ -62,7 +61,5 @@
                 }
             });
         });
-
-    });
 </script>
 @endpush

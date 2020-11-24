@@ -3,8 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/faretrimDev/faretrim-data/app/Http/Controllers/frontEnd/driver/DriverLoginController.php</file>
-            <file>file:/C:/xampp/htdocs/faretrimDev/faretrim-data/app/Http/Controllers/frontEnd/passenger/PassengerOperationController.php</file>
+            <file>file:/C:/xampp/htdocs/faretrimDev/faretrim-data/resources/views/frontEnd/contact.blade.php</file>
+            <file>file:/C:/xampp/htdocs/faretrimDev/faretrim-data/routes/web.php</file>
         </group>
     </open-files>
 </project-private>

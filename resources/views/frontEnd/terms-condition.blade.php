@@ -22,11 +22,8 @@
 <!-- Terms & Condition  area -->
 <section class="terms-area">
     <div class="container">
-        <h1>Privacy Policy | Terms & Conditions</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores tempora quis sapiente modi cumque ullam, officiis, nesciunt ducimus sint repellendus fugiat praesentium minus deleniti deserunt animi quae rem. Molestiae, minima! Accusamus, iure repellat, nesciunt illo expedita, veniam possimus eveniet ipsam iusto itaque laborum quas et provident commodi. Tenetur consequatur nulla corrupti error voluptas natus explicabo incidunt non placeat possimus pariatur harum, esse culpa quis atque inventore labore. Neque natus id, delectus ipsa iure a asperiores, et laboriosam est, accusamus consectetur.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae quos, praesentium deleniti quas similique ab aliquid eius, explicabo ea voluptatem molestias quasi ut aut necessitatibus doloribus. Repellat, deleniti maiores illum natus earum, placeat nesciunt fugiat iste tempora, quidem hic! Neque?</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit magni libero voluptas obcaecati consequatur voluptatum placeat expedita, nulla quaerat quis deserunt quasi corporis consequuntur dolores cupiditate adipisci natus nihil voluptate.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem fuga quo ut rerum esse nostrum, vero, possimus consectetur saepe velit eius voluptate. Similique nostrum consequatur quae dolorem eveniet ipsam iusto!</p>
+        <h1>{{$cmsPage->title}}</h1>
+        <p>{!!$cmsPage->description !!}</p>
     </div>
 </section>
 @endsection

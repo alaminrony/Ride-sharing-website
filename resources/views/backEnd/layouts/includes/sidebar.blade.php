@@ -12,6 +12,7 @@
     {{--   @php
     $elementActive = '';
     @endphp --}}
+   
     <div class="sidebar-wrapper">
         <ul class="nav">
             <li class="{{ $elementActive == 'dashboard' ? 'active' : '' }}">
@@ -483,6 +484,130 @@
                 </div>
             </li>
             {{-- slider : Start --}}
+            {{-- Home slider : Start --}}
+            <li class="{{ $elementActive == 'HomeSlider' || $elementActive == 'createHomeSlider' ? 'active' : '' }}">
+                <a data-toggle="collapse" aria-expanded="true" href="#HomeSliderManagement">
+                    {{-- <i class="fa fa-bell"></i> --}}
+                    <i class="fa fa-sliders"></i>
+                    <p>
+                        {{ __(' Home Slider ') }}
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse {{ $elementActive == 'HomeSlider' || $elementActive == 'createHomeSlider' ? 'show' : '' }}" id="HomeSliderManagement">
+                    <ul class="nav">
+                        <li class="{{ $elementActive == 'HomeSlider' ? 'active' : '' }}">
+                            <a href="{{ route('home-slider.index') }}">
+                                
+                                <span class="sidebar-mini-icon fa fa-sliders"></span>
+
+                                <i class="fas fa-photo-video"></i>
+                                <span class="sidebar-normal">{{ __('Slider List ') }}</span>
+                            </a>
+                        </li>
+                        <li class="{{ $elementActive == 'createHomeSlider' ? 'active' : '' }}">
+                            <a href="{{ route('home-slider.create') }}">
+                                <span class="sidebar-mini-icon fa fa-sliders"></span>
+                                <span class="sidebar-normal">{{ __(' Add Slider ') }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            {{-- slider : End home slider --}}
+            
+            {{-- driver slider : Start --}}
+            <li class="{{ $elementActive == 'DriverSlider' || $elementActive == 'createDriverSlider' ? 'active' : '' }}">
+                <a data-toggle="collapse" aria-expanded="true" href="#DriversliderManagement">
+                    {{-- <i class="fa fa-bell"></i> --}}
+                    <i class="fa fa-sliders"></i>
+                    <p>
+                        {{ __(' Driver Slider ') }}
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse {{ $elementActive == 'DriverSlider' || $elementActive == 'createDriverSlider' ? 'show' : '' }}" id="DriversliderManagement">
+                    <ul class="nav">
+                        <li class="{{ $elementActive == 'DriverSlider' ? 'active' : '' }}">
+                            <a href="{{ route('driver-slider.index') }}">
+                                
+                                <span class="sidebar-mini-icon fa fa-sliders"></span>
+
+                                <i class="fas fa-photo-video"></i>
+                                <span class="sidebar-normal">{{ __(' Slider List ') }}</span>
+                            </a>
+                        </li>
+                        <li class="{{ $elementActive == 'createDriverSlider' ? 'active' : '' }}">
+                            <a href="{{ route('driver-slider.create') }}">
+                                <span class="sidebar-mini-icon fa fa-sliders"></span>
+                                <span class="sidebar-normal">{{ __(' Add Slider ') }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            {{-- slider : End driver slider --}}
+            {{-- rider slider : Start --}}
+            <li class="{{ $elementActive == 'passengerSlider' || $elementActive == 'createpassengerSlider' ? 'active' : '' }}">
+                <a data-toggle="collapse" aria-expanded="true" href="#riderSliderManagement">
+                    {{-- <i class="fa fa-bell"></i> --}}
+                    <i class="fa fa-sliders"></i>
+                    <p>
+                        {{ __(' Rider Slider ') }}
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse {{ $elementActive == 'passengerSlider' || $elementActive == 'createpassengerSlider' ? 'show' : '' }}" id="riderSliderManagement">
+                    <ul class="nav">
+                        <li class="{{ $elementActive == 'passengerSlider' ? 'active' : '' }}">
+                            <a href="{{ route('rider-slider.index') }}">
+                                
+                                <span class="sidebar-mini-icon fa fa-sliders"></span>
+
+                                <i class="fas fa-photo-video"></i>
+                                <span class="sidebar-normal">{{ __(' Slider List ') }}</span>
+                            </a>
+                        </li>
+                        <li class="{{ $elementActive == 'createpassengerSlider' ? 'active' : '' }}">
+                            <a href="{{ route('rider-slider.create') }}">
+                                <span class="sidebar-mini-icon fa fa-sliders"></span>
+                                <span class="sidebar-normal">{{ __(' Add Slider ') }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            {{-- slider : End rider slider --}}
+            {{-- Page module : Start --}}
+            <li class="{{ $elementActive == 'cms' || $elementActive == 'cmsCreate' ? 'active' : '' }}">
+                <a data-toggle="collapse" aria-expanded="true" href="#cmsManagement">
+                    {{-- <i class="fa fa-bell"></i> --}}
+                    <i class="fa fa-sliders"></i>
+                    <p>
+                        {{ __('Page Management') }}
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse {{ $elementActive == 'cms' || $elementActive == 'cmsCreate' ? 'show' : '' }}" id="cmsManagement">
+                    <ul class="nav">
+                        <li class="{{ $elementActive == 'cms' ? 'active' : '' }}">
+                            <a href="{{ route('cms-page.index') }}">
+                                <span class="sidebar-mini-icon fa fa-sliders"></span>
+
+                                <i class="fas fa-photo-video"></i>
+                                <span class="sidebar-normal">{{ __(' CMS page List ') }}</span>
+                            </a>
+                        </li>
+                        <li class="{{ $elementActive == 'cmsCreate' ? 'active' : '' }}">
+                            <a href="{{ route('cms-page.create') }}">
+                                <span class="sidebar-mini-icon fa fa-sliders"></span>
+                                <span class="sidebar-normal">{{ __(' Add CMS ') }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            {{-- Page module end --}}
             {{-- News Management : Start --}}
             <li class="{{ $elementActive == 'newsCategory' || $elementActive == 'news'|| $elementActive == 'trashnews'|| $elementActive == 'createNews' ? 'active' : '' }}">
                 <a data-toggle="collapse" aria-expanded="true" href="#newsManagement">
@@ -492,7 +617,7 @@
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse {{ $elementActive == 'newsCategory' || $elementActive == 'news'|| $elementActive == 'trashnews'|| $elementActive == 'createNews' ? 'show' : '' }}" id="newsManagement">
+                <div class="collapse {{ $elementActive == 'newsCategory' || $elementActive == 'news'|| $elementActive == 'trashnews'|| $elementActive == 'createNews' ? 'show' : '' }}" id="riderSliderManagement">
                     <ul class="nav">
                         <li class="{{ $elementActive == 'newsCategory' ? 'active' : '' }}">
                             <a href="{{ route('news-category.index') }}">

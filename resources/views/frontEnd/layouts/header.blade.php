@@ -10,6 +10,7 @@
         <meta http-equiv='cache-control' content='no-cache'>
         <meta http-equiv='expires' content='0'>
         <meta http-equiv='pragma' content='no-cache'>
+        <!--<title>{{!empty($title)?'| '.$title : 'Welcome to FareTrim'}}</title>-->
         <title>Welcome to FareTrim</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">

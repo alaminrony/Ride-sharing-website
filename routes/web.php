@@ -26,12 +26,7 @@ Route::get('front-signup', function () {
     return view('frontEnd.signup');
 });
 
-Route::get('rider-page', function () {
-    return view('frontEnd.rider-page');
-});
-Route::get('driver-page', function () {
-    return view('frontEnd.driver-page');
-});
+
 
 Route::get('driver-login-password', function () {
     return view('frontEnd.driver-login-password');
@@ -67,6 +62,8 @@ Route::group(['namespace' => 'frontEnd\driver'], function () {
     Route::get('driver/verifyEmail/{email}', 'DriverLoginController@verifyEmail')->name('driver.verifyEmail');
     Route::get('mail-verification-success', 'DriverLoginController@mailVerificationSuccess')->name('driver.mail-verification-success');
     Route::post('phoneExistsForgetPass', 'DriverLoginController@phoneExistsForgetPass')->name('driver.phoneExistsForgetPass');
+    Route::get('driver-page', 'DriverLoginController@driverPage')->name('driver.driverPage');
+    
 
     Route::post('resetPassword', 'DriverLoginController@resetPassword')->name('driver.resetPassword');
     Route::get('driver/login/{provider}', 'DriverSocialLoginController@redirect');
@@ -86,6 +83,7 @@ Route::group(['namespace' => 'frontEnd\passenger'], function () {
     Route::get('mail-verification-success', 'PassengerOperationController@mailVerificationSuccess')->name('passenger.mail-verification-success');
     Route::post('passenger/phoneExistsForgetPass', 'PassengerOperationController@phoneExistsForgetPass')->name('passenger.phoneExistsForgetPass');
     Route::post('passenger/resetPassword', 'PassengerOperationController@resetPassword')->name('passenger.resetPassword');
+    Route::get('rider-page', 'PassengerOperationController@riderPage')->name('passenger.riderPage');
 //    Route::get('passenger/login/facebook', 'PassengerOperationController@redirectToProvider');
 //    Route::get('login/facebook/callback', 'PassengerOperationController@handleProviderCallback');
 });
@@ -118,6 +116,8 @@ Route::group(['namespace' => 'frontEnd\driver', 'middleware' => ['driver']], fun
     Route::get('driver-complete-ride-history-filter', 'DriverLoginController@driverCompletehistoryFilter')->name('driver.driverCompletehistoryFilter');
     Route::get('driver-cancel-ride-history-filter', 'DriverLoginController@driverCancelHistoryFilter')->name('driver.driverCancelHistoryFilter');
     Route::get('driver-ride-details', 'DriverLoginController@rideDetails')->name('driver.rideDetails');
+    Route::get('my-bill', 'DriverLoginController@myBill')->name('driver.myBill');
+    
 });
 Route::group(['namespace' => 'frontEnd\passenger', 'middleware' => ['passenger']], function () {
     Route::get('passenger-profile', 'PassengerOperationController@passengerProfile')->name('passenger.passengerProfile');
@@ -229,6 +229,34 @@ Route::group(['middleware' => 'auth', 'checkStatus'], function () {
     Route::get('admin/latest-news/edit/{id}', 'admin\LatestNewsController@edit')->name('latest-news.edit');
     Route::patch('admin/latest-news/update/{id}', 'admin\LatestNewsController@update')->name('latest-news.update');
     Route::delete('admin/latest-news/{id}', 'admin\LatestNewsController@delete')->name('latest-news.delete');
+    
+    Route::get('admin/home-slider', 'admin\HomeFaretrimWorksController@index')->name('home-slider.index');
+    Route::get('admin/home-slider/create', 'admin\HomeFaretrimWorksController@create')->name('home-slider.create');
+    Route::post('admin/home-slider/store', 'admin\HomeFaretrimWorksController@store')->name('home-slider.store');
+    Route::get('admin/home-slider/edit/{id}', 'admin\HomeFaretrimWorksController@edit')->name('home-slider.edit');
+    Route::patch('admin/home-slider/update/{id}', 'admin\HomeFaretrimWorksController@update')->name('home-slider.update');
+    Route::delete('admin/home-slider/{id}', 'admin\HomeFaretrimWorksController@delete')->name('home-slider.delete');
+    
+    Route::get('admin/driver-slider', 'admin\DriverSliderController@index')->name('driver-slider.index');
+    Route::get('admin/driver-slider/create', 'admin\DriverSliderController@create')->name('driver-slider.create');
+    Route::post('admin/driver-slider/store', 'admin\DriverSliderController@store')->name('driver-slider.store');
+    Route::get('admin/driver-slider/edit/{id}', 'admin\DriverSliderController@edit')->name('driver-slider.edit');
+    Route::patch('admin/driver-slider/update/{id}', 'admin\DriverSliderController@update')->name('driver-slider.update');
+    Route::delete('admin/driver-slider/{id}', 'admin\DriverSliderController@delete')->name('driver-slider.delete');
+    
+    Route::get('admin/rider-slider', 'admin\PassengerSliderController@index')->name('rider-slider.index');
+    Route::get('admin/rider-slider/create', 'admin\PassengerSliderController@create')->name('rider-slider.create');
+    Route::post('admin/rider-slider/store', 'admin\PassengerSliderController@store')->name('rider-slider.store');
+    Route::get('admin/rider-slider/edit/{id}', 'admin\PassengerSliderController@edit')->name('rider-slider.edit');
+    Route::patch('admin/rider-slider/update/{id}', 'admin\PassengerSliderController@update')->name('rider-slider.update');
+    Route::delete('admin/rider-slider/{id}', 'admin\PassengerSliderController@delete')->name('rider-slider.delete');
+    
+    Route::get('admin/cms-page', 'admin\CMSController@index')->name('cms-page.index');
+    Route::get('admin/cms-page/create', 'admin\CMSController@create')->name('cms-page.create');
+    Route::post('admin/cms-page/store', 'admin\CMSController@store')->name('cms-page.store');
+    Route::get('admin/cms-page/edit/{id}', 'admin\CMSController@edit')->name('cms-page.edit');
+    Route::patch('admin/cms-page/update/{id}', 'admin\CMSController@update')->name('cms-page.update');
+    Route::delete('admin/cms-page/{id}', 'admin\CMSController@delete')->name('cms-page.delete');
 });
 
 Route::group(['middleware' => 'auth'], function () {

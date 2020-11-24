@@ -1,0 +1,16 @@
+[04-May-2020 12:40:00 UTC] PHP Warning:  Unsupported declare 'strict_types' in /home/wli7njex4cer/public_html/faretrim-data/vendor/ramsey/uuid/src/functions.php on line 14
+[04-May-2020 12:40:00 UTC] PHP Parse error:  syntax error, unexpected '?', expecting variable (T_VARIABLE) in /home/wli7njex4cer/public_html/faretrim-data/vendor/ramsey/uuid/src/functions.php on line 34
+[04-May-2020 12:40:08 UTC] PHP Warning:  Unsupported declare 'strict_types' in /home/wli7njex4cer/public_html/faretrim-data/vendor/ramsey/uuid/src/functions.php on line 14
+[04-May-2020 12:40:08 UTC] PHP Parse error:  syntax error, unexpected '?', expecting variable (T_VARIABLE) in /home/wli7njex4cer/public_html/faretrim-data/vendor/ramsey/uuid/src/functions.php on line 34
+[04-May-2020 12:40:20 UTC] PHP Warning:  Unsupported declare 'strict_types' in /home/wli7njex4cer/public_html/faretrim-data/vendor/ramsey/uuid/src/functions.php on line 14
+[04-May-2020 12:40:20 UTC] PHP Parse error:  syntax error, unexpected '?', expecting variable (T_VARIABLE) in /home/wli7njex4cer/public_html/faretrim-data/vendor/ramsey/uuid/src/functions.php on line 34
+[04-May-2020 12:40:25 UTC] PHP Warning:  Unsupported declare 'strict_types' in /home/wli7njex4cer/public_html/faretrim-data/vendor/ramsey/uuid/src/functions.php on line 14
+[04-May-2020 12:40:25 UTC] PHP Parse error:  syntax error, unexpected '?', expecting variable (T_VARIABLE) in /home/wli7njex4cer/public_html/faretrim-data/vendor/ramsey/uuid/src/functions.php on line 34
+[04-May-2020 12:40:42 UTC] PHP Warning:  Unsupported declare 'strict_types' in /home/wli7njex4cer/public_html/faretrim-data/vendor/ramsey/uuid/src/functions.php on line 14
+[04-May-2020 12:40:42 UTC] PHP Parse error:  syntax error, unexpected '?', expecting variable (T_VARIABLE) in /home/wli7njex4cer/public_html/faretrim-data/vendor/ramsey/uuid/src/functions.php on line 34
+[04-May-2020 12:43:04 UTC] PHP Warning:  Unsupported declare 'strict_types' in /home/wli7njex4cer/public_html/faretrim-data/vendor/ramsey/uuid/src/functions.php on line 14
+[04-May-2020 12:43:04 UTC] PHP Parse error:  syntax error, unexpected '?', expecting variable (T_VARIABLE) in /home/wli7njex4cer/public_html/faretrim-data/vendor/ramsey/uuid/src/functions.php on line 34
+[04-May-2020 12:51:43 UTC] PHP Warning:  Unsupported declare 'strict_types' in /home/wli7njex4cer/public_html/faretrim-data/vendor/ramsey/uuid/src/functions.php on line 14
+[04-May-2020 12:51:43 UTC] PHP Parse error:  syntax error, unexpected '?', expecting variable (T_VARIABLE) in /home/wli7njex4cer/public_html/faretrim-data/vendor/ramsey/uuid/src/functions.php on line 34
+[04-May-2020 12:51:50 UTC] PHP Warning:  Unsupported declare 'strict_types' in /home/wli7njex4cer/public_html/faretrim-data/vendor/ramsey/uuid/src/functions.php on line 14
+[04-May-2020 12:51:50 UTC] PHP Parse error:  syntax error, unexpected '?', expecting variable (T_VARIABLE) in /home/wli7njex4cer/public_html/faretrim-data/vendor/ramsey/uuid/src/functions.php on line 34

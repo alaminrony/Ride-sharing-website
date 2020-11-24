@@ -18,6 +18,7 @@ use App\Cab;
 use App\CabRide;
 use App\RideStatus;
 use App\Notification;
+use App\PassengerSlider;
 use Laravel\Socialite\Facades\Socialite;
 
 class PassengerOperationController extends Controller {
@@ -551,6 +552,11 @@ class PassengerOperationController extends Controller {
         } else {
             return response()->json(['response' => 'error', 'message' => 'Password does not reset']);
         }
+    }
+    
+    public function riderPage(Request $request){
+        $passengerSlider = PassengerSlider::where('status', '1')->latest()->take(5)->get();
+        return view('frontEnd.rider-page')->with(compact('passengerSlider'));
     }
 
 }

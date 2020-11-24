@@ -1,5 +1,5 @@
 @extends('frontEnd.layouts.master')
-      @section('content')
+@section('content')
         <!-- Driver Dashboard area -->
         <section class="driver_dashboard_area">
             <div class="container">

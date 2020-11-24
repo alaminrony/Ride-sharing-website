@@ -52,7 +52,7 @@
                                 <p class="borderLeft">Rider Sign Up</p>
                                 <p class="step">Step <span class="circle-bg">2</span></p>
                             </div>
-                             <div class="alert alert-success alert-dismissible fade show" role="alert" style="display:none;margin: 0px 15px;text-align: center;"></div>
+                            <div class="alert alert-success alert-dismissible fade show" role="alert" style="display:none;margin: 0px 15px;text-align: center;"></div>
                             <div class="driver-signup-img">
                                 <img class="img-fluid" src="{{asset('frontEnd/assets/img/driver-sign-up/key.png')}}" alt="key">
                             </div>
@@ -362,7 +362,6 @@
 @endsection
 @push('script')
 <script type="text/javascript">
-    $(document).ready(function () {
     $(document).on('click', '#step-two-next', function (event) {
     event.preventDefault();
     var countryCode = $('#countryCode').val().split('+').pop();
@@ -382,8 +381,8 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             beforeSend: function () {
-                    $("#ajaxLoader").show();
-                },
+            $("#ajaxLoader").show();
+            },
             success: function (data) {
             if (data.response == "exist") {
             //password form with login
@@ -399,8 +398,8 @@
             }
             },
             complete: function () {
-                    $("#ajaxLoader").hide();
-                },
+            $("#ajaxLoader").hide();
+            },
     });
     } else {
     $('#errorPhone').html('Phone Number Required');
@@ -435,8 +434,8 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             beforeSend: function () {
-                    $("#ajaxLoader").show();
-                },
+            $("#ajaxLoader").show();
+            },
             success: function (data) {
             $('#errorOTP').text('');
             if (data.response == 'error') {
@@ -450,9 +449,8 @@
             }
             },
             complete: function () {
-                    $("#ajaxLoader").hide();
-                },
-
+            $("#ajaxLoader").hide();
+            },
     });
     }
     });
@@ -526,8 +524,8 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             beforeSend: function () {
-                    $("#ajaxLoader").show();
-                },
+            $("#ajaxLoader").show();
+            },
             success: function (data) {
             $('#driving_licence_no_error').text('');
             $('#australian_taxi_licence_no_error').text('');
@@ -555,8 +553,8 @@
             }
             },
             complete: function () {
-                    $("#ajaxLoader").hide();
-                },
+            $("#ajaxLoader").hide();
+            },
     });
     });
     $(document).on('click', '#loginWithExistsPassword', function (event) {
@@ -887,7 +885,6 @@
     }
     $("#profile_image").change(function () {
     readUR_PI(this);
-    });
     });
 </script>
 @endpush

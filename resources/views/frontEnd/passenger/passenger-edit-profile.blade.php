@@ -70,8 +70,6 @@
 @endsection
 @push('script')
 <script type="text/javascript">
-    $(document).ready(function () {
-
         $(document).on('click', '#profile_photo_input_button', function (event) {
             event.preventDefault();
             $('#profile_photo_input').click();
@@ -136,7 +134,5 @@
                 },
             });
         });
-
-    });
 </script>
 @endpush

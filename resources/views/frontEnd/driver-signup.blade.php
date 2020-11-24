@@ -1,4 +1,6 @@
-@extends('frontEnd.layouts.master')
+@extends('frontEnd.layouts.master',[
+'elementActive' => 'driverSignup'
+])
 @section('content')
 <!-- Driver Signup area -->
 <section class="driver_signup_area fix">

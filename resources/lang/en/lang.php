@@ -154,6 +154,9 @@ return [
     'REDUCE_FARE'=>'Reduce Fare',
     'REDUCE_FARE_UPDATED_SUCCESSFULLY'=>'Reduce Fare updated successfully!!',
     'OTP_SENT_SUCCESSFULLY'=>'OTP sent successfully!!',
+    'META_TITLE'=>'Meta Title',
+    'META_DESCRIPTION'=>'Meta Description',
+    'LINK'=>'Link',
     
 
 ];

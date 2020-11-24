@@ -32,15 +32,11 @@
                                 </span>
                                 @endif
                             </div>
-                            </div>
-                            <div class="row">
-                            <div class="input-group col-md-6">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="nc-icon nc-single-02"></i>
-                                    </span>
-                                </div>
-                                {!! Form::textarea('description',old('description'),['class' => 'form-control','placeholder' =>Lang::get('lang.DESCRIPTION')]) !!}
+                        </div>
+                        <div class="row">
+                            <div class="input-group col-md-8">
+                                
+                                {!! Form::textarea('description',old('description'),['class' => 'form-control editor','placeholder' =>Lang::get('lang.DESCRIPTION')]) !!}
                                 @if ($errors->has('description'))
                                 <span class="invalid-feedback" style="display: block;" role="alert">
                                     <strong>{{ $errors->first('description') }}</strong>
@@ -49,7 +45,7 @@
                             </div>
                         </div>
                         <div class="row">
-                             <div class="input-group col-md-6">
+                            <div class="input-group col-md-6">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
                                         <i class="fa fa-question-circle"></i>
@@ -62,17 +58,17 @@
                                 </span>
                                 @endif
                             </div>
-                       
+
                         </div>
-                       
+
                         <div class="row">
-                             <div class="input-group col-md-6">
+                            <div class="input-group col-md-6">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
                                         <i class="fa fa-image"></i>
                                     </span>
                                 </div>
-                                  {!! Form::file('image',['class' => 'form-control','placeholder' =>Lang::get('lang.PROFILE_PHOTO')]) !!}
+                                {!! Form::file('image',['class' => 'form-control','placeholder' =>Lang::get('lang.PROFILE_PHOTO')]) !!}
                                 @if ($errors->has('image'))
                                 <span class="invalid-feedback" style="display: block;" role="alert">
                                     <strong>{{ $errors->first('image') }}</strong>
@@ -81,13 +77,13 @@
                             </div>
                         </div>
                         <div class="row">
-                             <div class="input-group col-md-6">
+                            <div class="input-group col-md-6">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
                                         <i class="fa fa-image"></i>
                                     </span>
                                 </div>
-                                  {!! Form::file('details_image',['class' => 'form-control','placeholder' =>Lang::get('lang.PROFILE_PHOTO')]) !!}
+                                {!! Form::file('details_image',['class' => 'form-control','placeholder' =>Lang::get('lang.PROFILE_PHOTO')]) !!}
                                 @if ($errors->has('details_image'))
                                 <span class="invalid-feedback" style="display: block;" role="alert">
                                     <strong>{{ $errors->first('details_image') }}</strong>
@@ -95,13 +91,13 @@
                                 @endif
                             </div>
                         </div>
-                    
+
                         <div class="card-footer ">
                             <button type="submit" class="btn btn-info btn-round">{{ __('Submit') }}</button>
                             <a href="{{url('admin/latest-news')}}" class="btn btn-warning btn-round">Cancel</a>
                         </div>
                         {!! Form::close() !!}
-                        
+
                     </div>
                 </div>
             </div>

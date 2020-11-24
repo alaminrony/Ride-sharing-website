@@ -29,6 +29,7 @@
     <link href="{{ asset('paper') }}/demo/demo.css" rel="stylesheet" />
     <link href="{{ asset('paper') }}/css/custom.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="{{ asset('paper') }}/css/jodit.min.css" rel="stylesheet" />
     {{-- jquery --}}
     <script src="{{ asset('paper') }}/js/core/jquery.min.js"></script>
 
@@ -72,6 +73,7 @@
     <script src="{{ asset('paper') }}/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
     <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
     <script src="{{ asset('paper') }}/demo/demo.js"></script>
+    <script src="{{ asset('paper/js/jodit.min.js') }}"></script>
     <!-- Sharrre libray -->
     {{-- <script src="../assets/demo/jquery.sharrre.js"></script> --}}
 
@@ -95,6 +97,12 @@
 });
 });
     </script>
+     <script type="text/javascript">
+         $('.editor').each(function () {
+    var editor = new Jodit(this);
+    editor.value = '';
+});
+        </script>
     
     @stack('scripts')
 

@@ -191,8 +191,6 @@
 @endsection
 @push('script')
 <script type="text/javascript">
-    $(document).ready(function () {
-
         $(document).on('click', '#profile_photo_input_button', function (event) {
             event.preventDefault();
             $('#profile_photo_input').click();
@@ -301,6 +299,7 @@
 
         $(document).on('click', '#profileEditSubmit', function (event) {
             event.preventDefault();
+            
             var editData = new FormData($('#profileEditForm')[0]);
             $.ajax({
                 url: "{{ route('driver.driverUpdateProfile')}}",
@@ -357,7 +356,5 @@
                 }
             });
         });
-
-    });
 </script>
 @endpush

@@ -64,12 +64,34 @@
                 </h1>
             </div>
         </div>
-        <div class="driver-work-grid">
-            <div class="rightImg">
-                <img class="img-fluid" src="{{asset('frontEnd/assets/img/driver-page/mobile.png')}}" alt="mobile">
-            </div>                       
-            <div class="leftImg">
-                <img class="img-fluid" src="{{asset('frontEnd/assets/img/driver-page/driver-works-logo.png')}}" alt="driver">
+        <div class="row">
+            <div class="col-lg-5 zIndex animate__animated animate__fadeInRight animate__delay-2s">
+                <div class="phone_slider_navigation">
+                    <img src="{{asset('frontEnd/assets/img/just-mobile.png')}}" alt="just-mobile" class="img-fluid">
+                    <div class="img-over">
+                        <!-- Swiper -->
+                        <div class="swiper-container sTest">
+                            <div class="swiper-wrapper">
+                                @if($driverSlider->isNotEmpty())
+                                @foreach($driverSlider as $slider)
+                                <div class="swiper-slide">
+                                    <div class="overSliderimg">
+                                        <img src="{{asset($slider->image)}}" alt="mobile" class="img-fluid">
+                                    </div>
+                                </div>
+                                @endforeach
+                                @endif
+                            </div>
+                            <!-- Add Pagination -->
+                            <div class="swiper-pagination swiper-pagination3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-7 animate__animated animate__fadeInLeft animate__delay-2s">                        
+                <div class="phone_slider">
+                    <img class="img-fluid" src="{{asset('frontEnd/assets/img/driver-page/driver-works-logo.png')}}" alt="driver">
+                </div> 
             </div>
         </div>
     </div>

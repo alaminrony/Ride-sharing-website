@@ -1,0 +1,10 @@
+body.login-page {
+    background-image: url(https://media-exp1.licdn.com/dms/image/C4E1BAQHagHL45XtPHw/company-background_10000/0?e=2159024400&v=beta&t=CuoSjL0tbUTA2zzsdgMRhDXQVwrzx_AdK8bNBurDgfQ);
+    background-size: cover;
+}
+.note-toolbar .note-btn {
+    background: #646464 !important;
+    border-color: #dae0e5;
+    padding: .28rem .65rem;
+    font-size: 13px;
+}

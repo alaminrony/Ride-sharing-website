@@ -31,7 +31,7 @@
             <p><span>Send Message</span> <br> Have a query? Submit to us here.</p>
             @include('frontEnd.layouts.alert-message')
             <div class="message-box">
-                <form id="contactForm" action="#">
+                <form id="contactForm">
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="first_name" class="required">First Name</label>
@@ -81,7 +81,6 @@
 @endsection
 @push('script')
 <script type="text/javascript">
-    $(document).ready(function () {
         $(document).on('click', '#contactFormBtn', function (event) {
             event.preventDefault();
             var data = new FormData($('#contactForm')[0]);
@@ -123,6 +122,5 @@
                 }
             });
         });
-    });
 </script>
 @endpush

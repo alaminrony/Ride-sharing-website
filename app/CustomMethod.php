@@ -16,7 +16,6 @@ class CustomMethod extends Model
         }
     }
     
-    
 }
 
 
