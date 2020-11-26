@@ -608,6 +608,38 @@
                 </div>
             </li>
             {{-- Page module end --}}
+
+             {{-- Text widget : Start --}}
+            <li class="{{ $elementActive == 'textWidget' || $elementActive == 'textWidgetCreate' ? 'active' : '' }}">
+                <a data-toggle="collapse" aria-expanded="true" href="#textWidget">
+                    {{-- <i class="fa fa-bell"></i> --}}
+                    <i class="fa fa-sliders"></i>
+                    <p>
+                        {{ __('Text Widget') }}
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse {{ $elementActive == 'textWidget' || $elementActive == 'textWidgetCreate' ? 'show' : '' }}" id="textWidget">
+                    <ul class="nav">
+                        <li class="{{ $elementActive == 'textWidget' ? 'active' : '' }}">
+                            <a href="{{ route('text-widget.index') }}">
+                                <span class="sidebar-mini-icon fa fa-sliders"></span>
+
+                                <i class="fas fa-photo-video"></i>
+                                <span class="sidebar-normal">{{ __('Text widget List') }}</span>
+                            </a>
+                        </li>
+                        <li class="{{ $elementActive == 'textWidgetCreate' ? 'active' : '' }}">
+                            <a href="{{ route('text-widget.create') }}">
+                                <span class="sidebar-mini-icon fa fa-sliders"></span>
+                                <span class="sidebar-normal">{{ __('Add Text widget') }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            {{-- Text widget end --}}
+
             {{-- News Management : Start --}}
             <li class="{{ $elementActive == 'newsCategory' || $elementActive == 'news'|| $elementActive == 'trashnews'|| $elementActive == 'createNews' ? 'active' : '' }}">
                 <a data-toggle="collapse" aria-expanded="true" href="#newsManagement">

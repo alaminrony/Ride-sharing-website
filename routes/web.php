@@ -257,6 +257,13 @@ Route::group(['middleware' => 'auth', 'checkStatus'], function () {
     Route::get('admin/cms-page/edit/{id}', 'admin\CMSController@edit')->name('cms-page.edit');
     Route::patch('admin/cms-page/update/{id}', 'admin\CMSController@update')->name('cms-page.update');
     Route::delete('admin/cms-page/{id}', 'admin\CMSController@delete')->name('cms-page.delete');
+
+    Route::get('admin/text-widget', 'admin\TextWidgetController@index')->name('text-widget.index');
+    Route::get('admin/text-widget/create', 'admin\TextWidgetController@create')->name('text-widget.create');
+    Route::post('admin/text-widget/store', 'admin\TextWidgetController@store')->name('text-widget.store');
+    Route::get('admin/text-widget/edit/{id}', 'admin\TextWidgetController@edit')->name('text-widget.edit');
+    Route::patch('admin/text-widget/update/{id}', 'admin\TextWidgetController@update')->name('text-widget.update');
+    Route::delete('admin/text-widget/{id}', 'admin\TextWidgetController@delete')->name('text-widget.delete');
 });
 
 Route::group(['middleware' => 'auth'], function () {

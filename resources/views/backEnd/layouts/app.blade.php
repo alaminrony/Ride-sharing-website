@@ -97,12 +97,12 @@
 });
 });
     </script>
-     <script type="text/javascript">
+    <!--  <script type="text/javascript">
          $('.editor').each(function () {
     var editor = new Jodit(this);
-    editor.value = '';
+    // editor.value = '';
 });
-        </script>
+        </script> -->
     
     @stack('scripts')
 

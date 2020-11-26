@@ -9,6 +9,7 @@ use App\User;
 use App\AdminBillSetting;
 use App\HomeSlider;
 use App\CmsPage;
+use App\TextWidget;
 use DB;
 use Validator;
 
@@ -17,8 +18,10 @@ class HomeController extends Controller {
     public function index() {
         $latestNews = LatestNews::where('status', '1')->latest()->take(3)->get();
         $homeSlider = HomeSlider::where('status', '1')->latest()->take(5)->get();
+        $sectionThree = TextWidget::where('position','1')->where('status','1')->first();
+        // echo "<pre>";print_r($sectionThree->toArray());exit;
         $title = 'Home';
-        return view('frontEnd.index')->with(compact('latestNews','homeSlider','title'));
+        return view('frontEnd.index')->with(compact('latestNews','homeSlider','title','sectionThree'));
     }
 
     public function listLatestNews(Request $request) {
@@ -128,12 +131,13 @@ class HomeController extends Controller {
         return view('frontEnd.terms-condition')->with(compact('cmsPage','title'));
     }
     public function faqPage(){
-        return view('frontEnd.faq');
+        $cmsPage  = CmsPage::where('status','1')->where('id','5')->first();
+        return view('frontEnd.faq')->with(compact('cmsPage'));
     }
     public function guideline(){
          $cmsPage  = CmsPage::where('status','1')->where('id','3')->first();
 //         echo "<pre>";print_r($cmsPage);exit;
-        return view('frontEnd.guideline')->with(compact('cmsPage','title'));
+        return view('frontEnd.guideline')->with(compact('cmsPage'));
     }
 
 }

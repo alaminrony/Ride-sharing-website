@@ -21,6 +21,8 @@
                         </div>
                     </div>
                     @endforeach
+                    @else
+                    <div>No Data found</div>
                     @endif
                     
                     <div class="d-flex justify-content-between mt-3">

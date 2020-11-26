@@ -157,6 +157,8 @@ return [
     'META_TITLE'=>'Meta Title',
     'META_DESCRIPTION'=>'Meta Description',
     'LINK'=>'Link',
+    'CONTENT_LINK'=>'Content Link',
+    'POSITION'=>'Position',
     
 
 ];

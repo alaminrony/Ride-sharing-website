@@ -51,9 +51,9 @@
                         </div>
                         
                         <div class="row">
-                            <div class="input-group col-md-8">
+                            <div class="input-group col-md-12">
 
-                                {!! Form::textarea('description',old('description'),['class' => 'form-control editor','placeholder' =>Lang::get('lang.DESCRIPTION')]) !!}
+                                {!! Form::textarea('description',old('description'),['class' => 'form-control','id'=>'editor','placeholder' =>Lang::get('lang.DESCRIPTION')]) !!}
                                 @if ($errors->has('description'))
                                 <span class="invalid-feedback" style="display: block;" role="alert">
                                     <strong>{{ $errors->first('description') }}</strong>
@@ -121,3 +121,10 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script type="text/javascript">
+           var editor = new Jodit('#editor');
+            editor.value = '{!!old('description')!!}';
+</script>
+@endpush

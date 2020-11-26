@@ -69,28 +69,24 @@
 </section>
 <!-- End how faretrim works-->
 <!-- About area -->
+@if(!empty($sectionThree->status) && $sectionThree->status == '1')
 <section class="about">
     <div class="container">
         <div class="row">
             <div class="col-sm-6 animate__animated animate__fadeInLeft animate__delay-2s">
-                <h1 class="about_title">About FareTrim </h1>
-                <p>Fare Trim is built around the core value ‘always give more’. To give more back to riders, drivers and the community.</P>
-
-                <p>Our drivers get the highest rate in the market. With happy drivers, we make sure our riders are always happy.</p>
-                <p>For our riders, we offer more affordable rides and the new mini car for a smarter/cheaper choice.</p>   
-
-
-                <p>For the community, we give the first 10% of our share of the fare to a cause backed by you, our riders. The more you ride the more we give and the bigger the impact we make together.</p>
+                <h1 class="about_title">{{$sectionThree->title}} </h1>
+                <p>{!! $sectionThree->description !!}</p>
             </div>
             <div class="col-sm-6 animate__animated animate__fadeInRight animate__delay-2s">
                 <div class=" about_video">
 
-                    <iframe  src="https://www.youtube.com/embed/2Gg6Seob5Mg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe  src="{{urldecode($sectionThree->content_link)}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
     </div>
 </section>
+@endif
 <!-- Features area -->
 <section class="features">
     <div class="container">
