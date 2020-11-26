@@ -74,53 +74,122 @@
         </div>
     </div>
     <div class="footer-map pt-4">
-        <img class="img-fluid" src="{{asset('frontEnd/assets/img/contactUs/map.png')}}" alt="map">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="img-map" id="current_location_map" style="width:100%;height:400px;"></div>
+            </div>
+        </div>
+        <!--<img class="img-fluid" src="{{asset('frontEnd/assets/img/contactUs/map.png')}}" alt="map">-->
+
     </div>
 </section>
 <!-- Mission Statement area -->
 @endsection
 @push('script')
 <script type="text/javascript">
-        $(document).on('click', '#contactFormBtn', function (event) {
-            event.preventDefault();
-            var data = new FormData($('#contactForm')[0]);
-            $.ajax({
-                url: "{{url('helpAndSupport')}}",
-                data: data,
-                type: "POST",
-                dataType: "JSON",
-                cache: false,
-                contentType: false,
-                processData: false,
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                beforeSend: function () {
-                    $('#ajaxLoader').show();
-                },
-                success: function (data) {
-                    $('#first_name_error').text('');
-                    $('#last_name_error').text('');
-                    $('#email_error').text('');
-                    $('#phone_error').text('');
-                    $('#subject_error').text('');
-                    $('#message_error').text('');
-                    if (data.errors) {
-                        $('#first_name_error').text(data.errors.first_name);
-                        $('#last_name_error').text(data.errors.last_name);
-                        $('#email_error').text(data.errors.email);
-                        $('#phone_error').text(data.errors.phone);
-                        $('#subject_error').text(data.errors.subject);
-                        $('#message_error').text(data.errors.message);
-                    }
-                    if (data.response == 'success') {
-                        $('.alert-success').show().text('Your Contact message sent successfully!!');
-                    }
-                },
-                complete: function () {
-                    $('#ajaxLoader').hide();
+    $(document).on('click', '#contactFormBtn', function (event) {
+        event.preventDefault();
+        var data = new FormData($('#contactForm')[0]);
+        $.ajax({
+            url: "{{url('helpAndSupport')}}",
+            data: data,
+            type: "POST",
+            dataType: "JSON",
+            cache: false,
+            contentType: false,
+            processData: false,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            beforeSend: function () {
+                $('#ajaxLoader').show();
+            },
+            success: function (data) {
+                $('#first_name_error').text('');
+                $('#last_name_error').text('');
+                $('#email_error').text('');
+                $('#phone_error').text('');
+                $('#subject_error').text('');
+                $('#message_error').text('');
+                if (data.errors) {
+                    $('#first_name_error').text(data.errors.first_name);
+                    $('#last_name_error').text(data.errors.last_name);
+                    $('#email_error').text(data.errors.email);
+                    $('#phone_error').text(data.errors.phone);
+                    $('#subject_error').text(data.errors.subject);
+                    $('#message_error').text(data.errors.message);
                 }
-            });
+                if (data.response == 'success') {
+                    $('.alert-success').show().text('Your Contact message sent successfully!!');
+                }
+            },
+            complete: function () {
+                $('#ajaxLoader').hide();
+            }
         });
+    });
+</script>
+
+<script type="text/javascript">
+    let map, infoWindow;
+
+    function initMap() {
+//    $('#defaultMap').addClass('d-none');
+        map = new google.maps.Map(document.getElementById("current_location_map"), {
+            center: {lat: -33.865143, lng: 151.209900},
+            zoom: 16,
+        });
+
+        infoWindow = new google.maps.InfoWindow();
+        const locationButton = document.createElement("button");
+        locationButton.textContent = "Pan to Current Location";
+        locationButton.classList.add("custom-map-control-button");
+        map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+        locationButton.addEventListener("click", () => {
+            // Try HTML5 geolocation.
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                        (position) => {
+                    const pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude,
+                    };
+                    var marker = new google.maps.Marker({
+                        position: {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude,
+                        },
+                        map: map,
+                        draggable: true,
+                    });
+                    infoWindow.setPosition(pos);
+                    infoWindow.setContent("Location found.");
+                    infoWindow.open(map);
+                    map.setCenter(pos);
+                },
+                        () => {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                }
+                );
+            } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infoWindow, map.getCenter());
+            }
+        });
+    }
+
+    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(
+                browserHasGeolocation
+                ? "Error: The Geolocation service failed."
+                : "Error: Your browser doesn't support geolocation."
+                );
+        infoWindow.open(map);
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxuo3YR2wuXgT4maohLxkTp1QFEuTLz1Q&libraries=places&callback=initMap"
+        async defer>
+</script>
 </script>
 @endpush

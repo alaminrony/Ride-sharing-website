@@ -263,7 +263,7 @@
                                     <span class="text-danger" id="exists_password_error"></span>
                                 </div>
                                 <button class="driver-sign-up-btn" id="loginWithExistsPassword">Login as Driver</button>
-                                <p><a class="text-dark" href="#" id="forgetPasswordFromPassField">Forgot your password or user name?</a></p>
+                                <p><a class="forget-password-color" href="#" id="forgetPasswordFromPassField">Forgot your password or user name?</a></p>
                             </div>
                             <hr />
                             <div class="Position-Middle">OR</div>
@@ -301,7 +301,7 @@
                                     </div>
                                 </div>
                                 <a href="{{url('driverLogin')}}"><button class="driver-sign-up-btn">Login as Driver</button></a>
-                                <p><a class="text-dark" href="#">Forgot your password or user name?</a></p>
+                                <p><a class="forget-password-color" href="#">Forgot your password or user name?</a></p>
                             </div>
                             <hr />
                             <div class="Position-Middle">OR</div>

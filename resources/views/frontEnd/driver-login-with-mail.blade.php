@@ -258,7 +258,7 @@
                                     <span class="text-danger" id="exists_password_error"></span>
                                 </div>
                                 <button class="driver-sign-up-btn" id="loginWithExistsPassword">Login as Driver</button>
-                                <p><a class="text-dark" href="#" id="forgetPasswordFromPassField">Forgot your password or user name?</a></p>
+                                <p><a class="forget-password-color" href="#" id="forgetPasswordFromPassField">Forgot your password or user name?</a></p>
                             </div>
                             <hr />
                             <div class="Position-Middle">OR</div>
@@ -293,7 +293,7 @@
                                 </div>
                                 <span class="text-danger" id="emailORphone_error"></span>
                                 <button class="driver-sign-up-btn" id="emailOrphoneCheck">Login as Driver</button>
-                                <p><a class="text-dark" href="#" id="forgetPassword" type="button">Forgot your password or user name?</a></p>
+                                <p><a class="forget-password-color" href="#" id="forgetPassword" type="button">Forgot your password or user name?</a></p>
                             </div>
                             <hr />
 

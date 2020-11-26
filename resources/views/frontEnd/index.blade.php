@@ -69,7 +69,7 @@
 </section>
 <!-- End how faretrim works-->
 <!-- About area -->
-@if(!empty($sectionThree->status) && $sectionThree->status == '1')
+@if(!empty($sectionThree->status) && ($sectionThree->status == '1'))
 <section class="about">
     <div class="container">
         <div class="row">
