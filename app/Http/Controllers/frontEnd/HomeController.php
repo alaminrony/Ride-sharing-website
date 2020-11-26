@@ -80,21 +80,17 @@ class HomeController extends Controller {
     }
 
     public function estimateFare($output,$pickup_latitude,$pickup_longitude,$drop_latitude,$drop_longitude) {
-//        echo "<pre>";print_r($pickup_longitude);exit;
-       $distanceArr = explode(' ',$output['rows'][0]['elements'][0]['distance']['text']);
-       $durationArr = explode(' ',$output['rows'][0]['elements'][0]['duration']['text']);
+        
+       $distanceMiter = $output['rows'][0]['elements'][0]['distance']['value'];
+       $durationSecond = $output['rows'][0]['elements'][0]['duration']['value'];
        $duration = $output['rows'][0]['elements'][0]['duration']['text'];
+      
+       // Google provide distance in meters & we convert it to kilometer
+       $distanceKM = $distanceMiter / 1000;
+       // Google provide duration in second & we convert it to Minutes
+       $dutationMinutes = ($durationSecond /60);
        
-       if(!empty($durationArr[0]) && !empty($durationArr[2])){
-           $dutationMinutes = (($durationArr[0] * 60) + $durationArr[2]);
-       }else{
-           $dutationMinutes = $durationArr[0];
-       }
-       
-       $distanceKM = $distanceArr[0];
-       
-        $allFares = AdminBillSetting::get();
-//        
+        $allFares = AdminBillSetting::get();      
         if ($allFares->isNotEmpty()) {
             $competitorFare = [];
             foreach ($allFares as $fare) {
@@ -102,18 +98,25 @@ class HomeController extends Controller {
             }
         }
 
-        $maxFare = number_format(max($competitorFare),2);
-        $minFare = number_format(min($competitorFare),2);
-
+        $maxFare = max($competitorFare);
+        $minFare = min($competitorFare);
+        $minFareFormat = number_format(min($competitorFare),2);
+        
+        
         $reduceFare = DB::table('reduce_fares')->where('id', 1)->first();
         $fareReduce = $reduceFare->reduce_fare_percentage;
 
         $ourOfferingFare = $minFare - (($fareReduce * $minFare) / 100);
-        $ourOfferingFare = number_format($ourOfferingFare, 2);
+        $ourOfferingFareFormat = number_format($ourOfferingFare, 2);
+        
+//        echo "<pre>";print_r($ourOfferingFare);
+//        echo "\n";
+//        echo "<pre>";print_r($ourOfferingFareFormat);exit;
+
         
         $map = view('frontEnd.ajax.map')->with(compact('pickup_latitude','pickup_longitude','drop_latitude','drop_longitude'))->render();
         
-        $data = ['maxFare' => $maxFare, 'minFare' => $minFare, 'fareReducePercent' => $fareReduce, 'ourOfferingFare' => $ourOfferingFare,'duration'=>$duration,'map'=>$map];
+        $data = ['maxFare' => $maxFare, 'minFare' => $minFareFormat, 'fareReducePercent' => $fareReduce, 'ourOfferingFare' => $ourOfferingFareFormat,'duration'=>$duration,'map'=>$map];
         return response()->json(['response' => 'success', 'response_data' => $data]);
 
         // AdminBillSetting
