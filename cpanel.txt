@@ -1,0 +1,77 @@
+mytagroup.com.au/cpanel	(fare trim)
+wli7njex4cer	
+MytaGroup@2019
+
+http://ftdev.faretrim.com.au/
+
+https://drive.google.com/drive/folders/1YLOOaVHm02j_ocNDgCOoXOSC7aru1QcN (fare trim project)
+
+(Faretrim AWS access)
+SFTP:
+HOST: 3.25.24.202
+USER: user1
+PASS: h!s84hY55!!9(TkdG
+Port: 22
+(MySQL)  http://phpmyadmin.mytagroup.com/
+DB_USERNAME=appuser
+DB_PASSWORD=aPPU!pass20!!
+
+/var/www/faretrim.com.au/faretrim-data/app/Http/Controllers/frontEnd/driver  (controller)
+/var/www/faretrim.com.au/faretrim-data/storage/framework/views  (cache)
+
+
+
+/var/www/ftdev.faretrim.com.au
+/var/www/faretrim.com.au
+/var/www/api.faretrim.com.au
+
+User name : wedothewebs@gmail.com   (pick n go admin)
+Pass:  P{assw}@rd~
+
+(pick n go)
+FTP server: ftp.timesavedhaka.com
+FTP & explicit FTPS port:  21
+FTP Username: ab42659@pickngo.com.bd
+Pass: #V7*PqKQwo7R
+
+(database info pick n go)
+http://timesavedhaka.com/phpmyadmin46/
+username = ab42659_pickngo
+password = ZnZ@@m(&-9R&
+
+
+https://github.com/goldeninfotech/LegatoDesigns-Laravel
+https://admin.legatodesigns.com/login
+username: admin@legato.com
+password: 123456
+
+upload_max_filesize=900M
+post_max_size=800M
+max_input_time  (Default a -1) (Development 60 second) (Production 60 second)
+max_execution_time=300
+memory_limit = 2048M
+composer require ext-exif
+
+
+
+eng.jewel2006@gmail.com
+
+
+
+k%u(h+7lHvLb
+https://mytagroup.com.au:2096/webmaillogout.cgi
+
+
+
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=mail
+MAIL_PASSWORD=your gmail password which gmail provide 
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=your gmail
+MAIL_FROM_NAME="${APP_NAME}"
+
+145818850566637 (app id)
+7a80e46d29239d70c68bc6173c1197f3  (app secret)
+
