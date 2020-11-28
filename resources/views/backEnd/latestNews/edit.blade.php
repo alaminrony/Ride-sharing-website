@@ -96,6 +96,16 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="input-group col-md-8">
+                                {!! Form::textarea('key_words',$latestNews->key_words,['class' => 'form-control editor','placeholder' =>'Key words']) !!}
+                                @if ($errors->has('key_words'))
+                                <span class="invalid-feedback" style="display: block;" role="alert">
+                                    <strong>{{ $errors->first('key_words') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                        </div>
                         <div class="card-footer ">
                             <button type="submit" class="btn btn-info btn-round">{{ __('Update') }}</button>
                             <a href="{{route('latest-news.index')}}" class="btn btn-warning btn-round">Cancel</a>

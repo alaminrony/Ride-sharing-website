@@ -43,6 +43,7 @@ class LatestNewsController extends Controller {
             'image' => 'required|image|mimes:jpeg,png,jpg',
             'details_image' => 'required|image|mimes:jpeg,png,jpg',
             'status' => 'required',
+            'key_words' => 'required',
         ]);
 
 
@@ -52,6 +53,7 @@ class LatestNewsController extends Controller {
         $news->description = $request->description;
         $news->status = $request->status;
         $news->created_by =auth()->user()->id;
+        $news->key_words =$request->key_words;
         if ($files = $request->file('image')) {
             $imagePath = 'uploads/latestNews/';
             $imageName = $imagePath . '' . uniqid() . "." . date('Ymd') . "." . $files->getClientOriginalExtension();
@@ -109,6 +111,7 @@ class LatestNewsController extends Controller {
             'description' => 'required',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             'status' => 'required',
+            'key_words' => 'required',
         ]);
         if (isset($request->image)) {
             $request->validate([
@@ -120,6 +123,7 @@ class LatestNewsController extends Controller {
         $latestNews->description = $request->description;
         $latestNews->status = $request->status;
         $latestNews->created_by =auth()->user()->id;
+        $latestNews->key_words =$request->key_words;
         if ($files = $request->file('image')) {
             if (file_exists($latestNews->image)) {
                 @unlink($latestNews->image);

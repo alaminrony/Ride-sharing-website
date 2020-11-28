@@ -39,6 +39,7 @@ Route::get('/', 'frontEnd\HomeController@index');
 Route::get('list-latest-news', 'frontEnd\HomeController@listLatestNews');
 Route::get('grid-list-latest-news', 'frontEnd\HomeController@gridListLatestNews');
 Route::get('latest-news/{id}/details', 'frontEnd\HomeController@latestNewsDetails');
+Route::get('latest-news-by-keyword/{keywords}/', 'frontEnd\HomeController@latestNewsByKeywords');
 Route::post('front/distanceAndDuration', 'frontEnd\HomeController@distanceAndDuration')->name('front.distanceAndDuration');
 Route::get('safety-page', 'frontEnd\HomeController@safetyPage');
 Route::get('terms-and-condition', 'frontEnd\HomeController@termsAndCondition');
