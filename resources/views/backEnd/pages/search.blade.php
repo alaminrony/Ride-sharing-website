@@ -1,5 +1,5 @@
 <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />-->
-<ul class="dropdown-menu" style="display:block; position:relative;">
+<ul class="dropdown-menu" style="display:block; padding: 10px;border: 2px solid #dddd;font-size: 14px;">
     @if($users->isNotEmpty())
     @foreach ($users as $user)
     <li><a href="{{url('user?userId='.$user->id)}}">{{!empty($user->first_name)?$user->first_name : ''}} {{!empty($user->last_name)?$user->last_name : ''}} (user)</a></li>

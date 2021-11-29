@@ -7,7 +7,9 @@ $url = end($urlArr);
     <div class="header-grid">
         <div class="text-center">
             <h5>Dashboard</h5>
+            @if(!empty($driver->profile_photo))
             <img src="{{url($driver->profile_photo)}}" alt="profile" class="img-fluid" style="width:75px;height:75px;border: 4px solid #EE7C2B;padding-bottom: 0 !important;">
+            @endif
             <p>{{$driver->full_name}}<br /> <span>Status: {{$driver->is_online == '1' ? 'Online' : 'Offline'}}</span></p>
         </div>
     </div>
@@ -46,14 +48,14 @@ $url = end($urlArr);
         <li class="hr-line">
             <div id="clickVehicle">
                 <a data-toggle="collapse" aria-expanded="true" href="#driverVehicle">
-                    <p class="d-flex text-white justify-content-between cursorPointer {{$url == 'vehicles-list' || $url == 'add-vehicles' ? 'sidbar-active-parent' : ''}}" id="vehicleActive">
+                    <p class="d-flex text-white justify-content-between cursorPointer {{$url == 'vehicles-list' || $url == 'add-vehicles' || $url == 'edit-vehicle' ? 'sidbar-active-parent' : ''}}" id="vehicleActive">
                         <span><img class="img-fluid mr-2" src="{{asset('frontEnd/assets/img/dashboard/pro.png')}}" alt="">My Vehicles</span>
                         <span><i class="fa fa-angle-right"></i></span>
                     </p>
                 </a>
             </div>
 
-            <div id="driverVehicle" class="collapse {{ $url == 'vehicles-list' || $url == 'add-vehicles' ? 'show' : '' }} ">
+            <div id="driverVehicle" class="collapse {{ $url == 'vehicles-list' || $url == 'add-vehicles' || $url == 'edit-vehicle'? 'show' : '' }} ">
                 <ul style="" class="ml-4">
                     <li>
                         <a href="{{url('vehicles-list?driverId='.$driver->id)}}" class="{{ $url == 'vehicles-list'  ? 'sidbar-active-child' : '' }}">My Vehicles</a>
@@ -68,14 +70,14 @@ $url = end($urlArr);
         <li class="hr-line">
             <div id="clickRideHistory">
                 <a data-toggle="collapse" aria-expanded="true" href="#ride_History">
-                    <p class="d-flex text-white justify-content-between cursorPointer {{$url == 'driver-ride-history' || $url == 'driver-ride-complete' || $url == 'driver-ride-cancel-history'  ? 'sidbar-active-parent' : ''}}" id="rideHistoryActive">
+                    <p class="d-flex text-white justify-content-between cursorPointer {{$url == 'driver-ride-history' || $url == 'driver-ride-complete' || $url == 'driver-ride-cancel-history' || $url == 'driver-ride-details'  ? 'sidbar-active-parent' : ''}}" id="rideHistoryActive">
                         <span><img class="img-fluid mr-2" src="{{asset('frontEnd/assets/img/dashboard/pro.png')}}" alt="">Ride History</span>
                         <span><i class="fa fa-angle-right"></i></span>
                     </p>
                 </a>
             </div>
 
-            <div id="ride_History" class="collapse {{ $url == 'driver-ride-history' || $url == 'driver-ride-complete' || $url == 'driver-ride-cancel-history' ? 'show' : '' }} ">
+            <div id="ride_History" class="collapse {{ $url == 'driver-ride-history' || $url == 'driver-ride-complete' || $url == 'driver-ride-cancel-history' || $url == 'driver-ride-details' ? 'show' : '' }} ">
                 <ul style="" class="ml-4">
                     <li>
                         <a href="{{url('driver-ride-history?driverId='.$driver->id)}}" class="{{ $url == 'driver-ride-history'  ? 'sidbar-active-child' : '' }}">List Ride</a>

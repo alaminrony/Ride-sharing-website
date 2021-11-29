@@ -10,7 +10,7 @@
                 <div class="card-header border-0">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h3 class="mb-0">Latest News <i class="nc-icon nc-single-02"></i></h3>
+                            <h3 class="mb-0">Latest News <i class="fa fa-newspaper-o"></i></h3>
                         </div>
                     </div>
                 </div>
@@ -34,9 +34,9 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="input-group col-md-8">
-                                
-                                {!! Form::textarea('description',old('description'),['class' => 'form-control editor','placeholder' =>Lang::get('lang.DESCRIPTION')]) !!}
+                            <div class="input-group col-md-12">
+                                <textarea name="description" class="form-control" id="editor">
+                                </textarea>
                                 @if ($errors->has('description'))
                                 <span class="invalid-feedback" style="display: block;" role="alert">
                                     <strong>{{ $errors->first('description') }}</strong>
@@ -95,7 +95,7 @@
                         <div class="row">
                             <div class="input-group col-md-8">
                                 
-                                {!! Form::textarea('key_words',old('key_words'),['class' => 'form-control editor','placeholder' =>'Key words']) !!}
+                                {!! Form::textarea('key_words',old('key_words'),['class' => 'form-control','placeholder' =>'Key words']) !!}
                                 @if ($errors->has('key_words'))
                                 <span class="invalid-feedback" style="display: block;" role="alert">
                                     <strong>{{ $errors->first('key_words') }}</strong>
@@ -117,3 +117,10 @@
     </div>
 </div>
 @endsection
+@push('scripts')
+<script type="text/javascript">
+           var editor = new Jodit('#editor');
+           var value = "{!! !empty(old('description'))? old('description') : '' !!}";
+            editor.value = value;
+</script>
+@endpush

@@ -41,7 +41,7 @@ class verifyEmail extends Notification {
     public function toMail($notifiable) {
         return (new MailMessage)
                         ->greeting($this->details['greeting'])
-                        ->subject('Verify your email to signing up for fare trim')
+                        ->subject('Verify your email to signing up for faretrim')
                         ->line($this->details['body'])
                         ->action($this->details['actionText'], $this->details['actionURL'])
                         ->line('Thank you for using faretrim!');

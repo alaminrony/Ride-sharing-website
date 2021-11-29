@@ -70,6 +70,9 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="ml-3">
+                    {{ $cabrides->links() }}
+                </div>
             </div>
         </div>
     </div>

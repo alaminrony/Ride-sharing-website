@@ -57,9 +57,7 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <div class="img-map">
-                                <img src="{{asset('frontEnd/assets/img/map.png')}}" alt="" class="img-fluid">
-                            </div>
+                               <div class="img-map" id="map" style="width: 400px;height: 400px;">
                         </div>
                     </div>
                 </div>

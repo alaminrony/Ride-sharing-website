@@ -164,6 +164,8 @@ return [
         'Tymon\JWTAuth\Providers\LaravelServiceProvider',
         Intervention\Image\ImageServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
         
 
         /*
@@ -236,9 +238,14 @@ return [
         'JWTFactory' => 'Tymon\JWTAuth\Facades\JWTFactory',
         'Image' => Intervention\Image\Facades\Image::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         
 
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+
+        //Helpers class
+        'Helper' => App\Helpers\Helper::class,
     ],
 
 ];

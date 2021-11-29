@@ -10,7 +10,7 @@
                 <div class="card-header border-0">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h3 class="mb-0">Edit Text widget<i class="nc-icon nc-single-02"></i></h3>
+                            <h3 class="mb-0"><i class="fa fa-edit"></i> Edit Text widget</h3>
                         </div>
                     </div>
 
@@ -55,7 +55,7 @@
                                         <i class="nc-icon nc-single-02"></i>
                                     </span>
                                 </div>
-                                {!! Form::text('content_link',urldecode($target->content_link),['class' => 'form-control','placeholder' =>'Enter content Link']) !!}
+                                {!! Form::text('content_link',urldecode($target->content_link),['class' => 'form-control','placeholder' =>'Enter youtube Link']) !!}
                                 @if ($errors->has('content_link'))
                                 <span class="invalid-feedback" style="display: block;" role="alert">
                                     <strong>{{ $errors->first('content_link') }}</strong>

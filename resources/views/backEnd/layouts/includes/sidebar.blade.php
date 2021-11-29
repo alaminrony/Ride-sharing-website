@@ -51,7 +51,7 @@
             {{-- Driver --}}
             <li class="{{ $elementActive == 'Driver' ||$elementActive =='trashDriver'|| $elementActive == 'inactive' || $elementActive == 'createDriver' || $elementActive == 'driverlog'|| $elementActive == 'driverbill' ? 'active' : '' }}">
                 <a data-toggle="collapse" aria-expanded="true" href="#driverManagement">
-                    <i class="nc-icon nc-single-02"></i>
+                    <i class="fa fa-users"></i>
                     <p>
                         {{ __('Driver') }}
                         <b class="caret"></b>
@@ -139,8 +139,38 @@
                 </div>
             </li>
             {{-- taxicab : end --}}
+
+                        {{-- Taxi cab : start --}}
+            <li class="{{ $elementActive == 'createOperator' || $elementActive == 'operatorList'  || $elementActive == 'editOperator' ? 'active' : ''}}">
+                <a data-toggle="collapse" aria-expanded="true" href="#taxiOperator">
+                    <i class="fa fa-car"></i>
+                    <p>
+                        {{ __('Taxi Operator') }}
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse {{ $elementActive == 'createOperator' || $elementActive == 'operatorList' || $elementActive == 'editOperator' ? 'show' : '' }}" id="taxiOperator">
+                    <ul class="nav">
+                        <li class="{{ $elementActive == 'operatorList'? 'active' : '' }}">
+                            <a href="{{ route('taxi-operator.index') }}">
+                                <span class="sidebar-mini-icon fas fa-clipboard-list"></span>
+                                <span class="sidebar-normal">{{ __(' List Taxi Operator ') }}</span>
+                            </a>
+                        </li>
+                        <li class="{{ $elementActive == 'createOperator' ? 'active' : '' }}" >
+                            <a href="{{ route('taxi-operator.create') }}">
+                                <span class="sidebar-mini-icon nc-icon nc-circle-10"></span>
+                                <span class="sidebar-normal">{{ __(' Add Taxi Operator ') }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            {{-- taxicab : end --}}
+
+
             {{-- Rides : start --}}
-            <li class="{{ $elementActive == 'cabride' || $elementActive == 'ridecancel'|| $elementActive == 'pendingride' || $elementActive == 'cabridediscount' ? 'active' : '' }}">
+            <li class="{{ $elementActive == 'cabride' || $elementActive == 'ridecancel'|| $elementActive == 'pendingride' || $elementActive == 'cabridediscount' || $elementActive == 'completeRide' ? 'active' : '' }}">
                 <a data-toggle="collapse" aria-expanded="true" href="#ridemanagement">
                     {{-- <i class="fa fa-car"></i> --}}
                     <i class="fas fa-car-side"></i>
@@ -149,12 +179,18 @@
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse {{ $elementActive == 'cabride' || $elementActive == 'ridecancel' || $elementActive == 'pendingride'|| $elementActive == 'cabridediscount' ? 'show' : '' }}" id="ridemanagement">
+                <div class="collapse {{ $elementActive == 'cabride' || $elementActive == 'ridecancel' || $elementActive == 'pendingride'|| $elementActive == 'cabridediscount' || $elementActive == 'completeRide' ? 'show' : '' }}" id="ridemanagement">
                     <ul class="nav">
                         <li  class="{{ $elementActive == 'cabride' ? 'active' : '' }}">
                             <a href="{{ route('cab-ride.index') }}">
                                 <span class="sidebar-mini-icon fas fa-clipboard-list"></span>
                                 <span class="sidebar-normal">{{ __(' List Rides ') }}</span>
+                            </a>
+                        </li>
+                        <li class="{{ $elementActive == 'completeRide' ? 'active' : ''}}">
+                            <a href="{{ url('cab-ride/complete-rides') }}">
+                                <span class="sidebar-mini-icon nc-icon nc-circle-10"></span>
+                                <span class="sidebar-normal">{{ __(' Complete Rides ') }}</span>
                             </a>
                         </li>
                         <li class="{{ $elementActive == 'pendingride' ? 'active' : ''}}">
@@ -226,7 +262,7 @@
             </li>
             {{-- passenger : end --}}
             {{-- Our services : start  --}}
-            <li class="{{ $elementActive == 'ourService' || $elementActive == 'serviceCreate' ? 'active' : '' }}">
+<!--            <li class="{{ $elementActive == 'ourService' || $elementActive == 'serviceCreate' ? 'active' : '' }}">
                 <a data-toggle="collapse" aria-expanded="true" href="#servicesManagement">
                     {{-- <i class="fa fa-car"></i> --}}
                     <i class="fa fa-rss"></i>
@@ -251,13 +287,12 @@
                         </li>
                     </ul>
                 </div>
-            </li>
+            </li>-->
             {{-- Our services : end  --}}
             {{-- Latest News : start  --}}
             <li class="{{ $elementActive == 'LatestNews' || $elementActive == 'LatestNewsCreate' ? 'active' : '' }}">
                 <a data-toggle="collapse" aria-expanded="true" href="#latestNewsManagement">
-                    {{-- <i class="fa fa-car"></i> --}}
-                    <i class="fa fa-rss"></i>
+                    <i class="fa fa-newspaper-o"></i>
                     <p>
                         {{ __('Latest News') }}
                         <b class="caret"></b>
@@ -282,7 +317,7 @@
             </li>
             {{-- Latest news : end  --}}
             {{-- Rides App : start --}}
-            <li class="{{ $elementActive == 'rideapps' || $elementActive == 'createrideapps' ? 'active' : '' }}">
+<!--            <li class="{{ $elementActive == 'rideapps' || $elementActive == 'createrideapps' ? 'active' : '' }}">
                 <a data-toggle="collapse" aria-expanded="true" href="#ridesAppManagement">
                     <i class="fa fa-car"></i>
                     <p>
@@ -307,7 +342,7 @@
                         </li>
                     </ul>
                 </div>
-            </li>
+            </li>-->
             {{-- Rides App : end --}}
             {{-- Notification list : start --}}
             <li class="{{ $elementActive == 'notification' || $elementActive == 'createnotification' || $elementActive =='tokenList' ? 'active' : '' }}">
@@ -422,7 +457,7 @@
             
             <li class="{{ $elementActive == 'AdminCreateBillSeting' || $elementActive == 'AdminBillSetingList' || $elementActive == 'reduceFare' ? 'active' : '' }}">
                 <a data-toggle="collapse" aria-expanded="true" href="#adminsettingsmanagement">
-                    <i class="fa fa-cog"></i>
+                    <i class="fa fa-cogs"></i>
                     <p>
                         {{ __('Fare Settings') }}
                         <b class="caret"></b>
@@ -454,7 +489,7 @@
             </li>
             {{-- Bill settings : end  --}}
             {{-- slider : Start --}}
-            <li class="{{ $elementActive == 'slider' || $elementActive == 'createslider' ? 'active' : '' }}">
+<!--            <li class="{{ $elementActive == 'slider' || $elementActive == 'createslider' ? 'active' : '' }}">
                 <a data-toggle="collapse" aria-expanded="true" href="#sliderManagement">
                     {{-- <i class="fa fa-bell"></i> --}}
                     <i class="fa fa-sliders"></i>
@@ -482,7 +517,7 @@
                         </li>
                     </ul>
                 </div>
-            </li>
+            </li>-->
             {{-- slider : Start --}}
             {{-- Home slider : Start --}}
             <li class="{{ $elementActive == 'HomeSlider' || $elementActive == 'createHomeSlider' ? 'active' : '' }}">
@@ -498,10 +533,8 @@
                     <ul class="nav">
                         <li class="{{ $elementActive == 'HomeSlider' ? 'active' : '' }}">
                             <a href="{{ route('home-slider.index') }}">
-                                
                                 <span class="sidebar-mini-icon fa fa-sliders"></span>
-
-                                <i class="fas fa-photo-video"></i>
+                               
                                 <span class="sidebar-normal">{{ __('Slider List ') }}</span>
                             </a>
                         </li>
@@ -532,8 +565,6 @@
                             <a href="{{ route('driver-slider.index') }}">
                                 
                                 <span class="sidebar-mini-icon fa fa-sliders"></span>
-
-                                <i class="fas fa-photo-video"></i>
                                 <span class="sidebar-normal">{{ __(' Slider List ') }}</span>
                             </a>
                         </li>
@@ -561,10 +592,7 @@
                     <ul class="nav">
                         <li class="{{ $elementActive == 'passengerSlider' ? 'active' : '' }}">
                             <a href="{{ route('rider-slider.index') }}">
-                                
                                 <span class="sidebar-mini-icon fa fa-sliders"></span>
-
-                                <i class="fas fa-photo-video"></i>
                                 <span class="sidebar-normal">{{ __(' Slider List ') }}</span>
                             </a>
                         </li>
@@ -581,8 +609,7 @@
             {{-- Page module : Start --}}
             <li class="{{ $elementActive == 'cms' || $elementActive == 'cmsCreate' ? 'active' : '' }}">
                 <a data-toggle="collapse" aria-expanded="true" href="#cmsManagement">
-                    {{-- <i class="fa fa-bell"></i> --}}
-                    <i class="fa fa-sliders"></i>
+                    <i class="fa fa-tasks"></i>
                     <p>
                         {{ __('Page Management') }}
                         <b class="caret"></b>
@@ -593,8 +620,6 @@
                         <li class="{{ $elementActive == 'cms' ? 'active' : '' }}">
                             <a href="{{ route('cms-page.index') }}">
                                 <span class="sidebar-mini-icon fa fa-sliders"></span>
-
-                                <i class="fas fa-photo-video"></i>
                                 <span class="sidebar-normal">{{ __(' CMS page List ') }}</span>
                             </a>
                         </li>
@@ -613,7 +638,7 @@
             <li class="{{ $elementActive == 'textWidget' || $elementActive == 'textWidgetCreate' ? 'active' : '' }}">
                 <a data-toggle="collapse" aria-expanded="true" href="#textWidget">
                     {{-- <i class="fa fa-bell"></i> --}}
-                    <i class="fa fa-sliders"></i>
+                    <i class="fa fa-file-text"></i>
                     <p>
                         {{ __('Text Widget') }}
                         <b class="caret"></b>
@@ -624,14 +649,12 @@
                         <li class="{{ $elementActive == 'textWidget' ? 'active' : '' }}">
                             <a href="{{ route('text-widget.index') }}">
                                 <span class="sidebar-mini-icon fa fa-sliders"></span>
-
-                                <i class="fas fa-photo-video"></i>
                                 <span class="sidebar-normal">{{ __('Text widget List') }}</span>
                             </a>
                         </li>
                         <li class="{{ $elementActive == 'textWidgetCreate' ? 'active' : '' }}">
                             <a href="{{ route('text-widget.create') }}">
-                                <span class="sidebar-mini-icon fa fa-sliders"></span>
+                                <span class="sidebar-mini-icon fa fa-plus"></span>
                                 <span class="sidebar-normal">{{ __('Add Text widget') }}</span>
                             </a>
                         </li>
@@ -641,7 +664,7 @@
             {{-- Text widget end --}}
 
             {{-- News Management : Start --}}
-            <li class="{{ $elementActive == 'newsCategory' || $elementActive == 'news'|| $elementActive == 'trashnews'|| $elementActive == 'createNews' ? 'active' : '' }}">
+<!--            <li class="{{ $elementActive == 'newsCategory' || $elementActive == 'news'|| $elementActive == 'trashnews'|| $elementActive == 'createNews' ? 'active' : '' }}">
                 <a data-toggle="collapse" aria-expanded="true" href="#newsManagement">
                     <i class="fa fa-newspaper-o"></i>
                     <p>
@@ -677,7 +700,7 @@
                         </li>
                     </ul>
                 </div>
-            </li>
+            </li>-->
             {{-- News Management : end --}}
             {{-- Contact Request : Start --}}
             <li class="{{ $elementActive == 'contact' ? 'active' : '' }}">

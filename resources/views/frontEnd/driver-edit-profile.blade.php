@@ -110,7 +110,7 @@
                         <div class="form-row-grid">
                             <div>
                                 <label for="profile_photo">Profile Photo</label>
-                                <img src="{{url($driver->profile_photo)}}" alt="Driving Licence Front" class="image-size" style="float: right;" id="profile_photo">
+                                <img src="{{url($driver->profile_photo??'')}}" alt="Driving Licence Front" class="image-size" style="float: right;" id="profile_photo">
                                 <img src="#" alt="Profile Photo" class="image-size" style="display: none;float: right;" id="profile_photo_preview">
                                 <div class="text-danger" id="profile_photo_error"></div>
                             </div>
@@ -125,7 +125,7 @@
                         <div class="form-row-grid">
                             <div>
                                 <label for="">Driving Licence Front</label>
-                                <img src="{{url($driver->driving_licence_photo_front)}}" class="image-size" style="float: right;" id="driving_licence_photo_front">
+                                <img src="{{url($driver->driving_licence_photo_front??'')}}" class="image-size" style="float: right;" id="driving_licence_photo_front">
                                 <img src="#" alt="Driving Licence Front" class="image-size" style="display: none;float: right;" id="driving_licence_photo_front_preview">
                                 <div class="text-danger" id="driving_licence_photo_front_error"></div>
                             </div>
@@ -140,7 +140,7 @@
                         <div class="form-row-grid">
                             <div>
                                 <label for="">Driving Licence Back</label>
-                                <img src="{{url($driver->driving_licence_photo_back)}}" class="image-size" style="float: right;" id="driving_licence_photo_back"/>
+                                <img src="{{url($driver->driving_licence_photo_back??'')}}" class="image-size" style="float: right;" id="driving_licence_photo_back"/>
                                 <img src="#" alt="Driving Licence Front" class="image-size" style="display: none;float: right;" id="driving_licence_photo_back_preview">
                                 <div class="text-danger" id="driving_licence_photo_back_error"></div>
                             </div>
@@ -155,7 +155,7 @@
                         <div class="form-row-grid">
                             <div>
                                 <label for="">Australian Taxi Licence Front</label>
-                                <img src="{{url($driver->atln_photo_front)}}" class="image-size" style="float: right;" id="atln_photo_front"/>
+                                <img src="{{url($driver->atln_photo_front??'')}}" class="image-size" style="float: right;" id="atln_photo_front"/>
                                 <img src="#" alt="Driving Licence Front" class="image-size" style="display: none;float: right;" id="atln_photo_front_preview">
                                 <div class="text-danger" id="atln_photo_front_error"></div>
                             </div>
@@ -170,7 +170,7 @@
                         <div class="form-row-grid">
                             <div>
                                 <label for="">Australian Taxi Licence Back</label>
-                                <img src="{{url($driver->atln_photo_back)}}" class="image-size" style="float: right;" id="atln_photo_back"/>
+                                <img src="{{url($driver->atln_photo_back??'')}}" class="image-size" style="float: right;" id="atln_photo_back"/>
                                 <img src="#" alt="Driving Licence Front" class="image-size" style="display: none;float: right;" id="atln_photo_back_preview">
                                 <div class="text-danger" id="atln_photo_back_error"></div>
                             </div>
@@ -312,6 +312,9 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
+                beforeSend:function(){
+                    $('#ajaxLoader').show();
+                },
                 success: function (data) {
                     console.log(data);
                     $('#full_name_error').text('');
@@ -353,7 +356,10 @@
                     if (data.response == 'success') {
                         $('.alert-success').show().text('Profile update successfully!!');
                     }
-                }
+                },
+                complete:function(){
+                    $('#ajaxLoader').hide();
+                },
             });
         });
 </script>

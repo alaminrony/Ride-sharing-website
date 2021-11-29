@@ -85,10 +85,7 @@
                     </div>
                     <div class="rider-booking-content text-center">
                         <span>3</span>
-                        <p>Your request will reach
-                            1000s of driver around you
-                            and you will get a Booking
-                            accepted notification sooner</p>
+                        <p></p>
                     </div>
                 </div>
             </div>
@@ -100,7 +97,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 animate__animated animate__fadeInUp animate__delay-2s">
-                <h1 class="section_title">FareTrim Pricing Estimator</h1>
+                <h1 class="section_title">faretrim Pricing Estimator</h1>
             </div>
         </div>
         <div class="row">
@@ -229,10 +226,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-flex content-footer">
-                    <div><img class="img-fluid ml-2 mr-2" src="{{asset('frontEnd/assets/img/rider-page/plus.png')}}" alt=""></div>
-                    <p class="font-weight-bold p-0">How to sign up a faretrim account? </p>
-                </div>
+               
             </div>
             <div class="right-content">
                 <div class="d-flex content">
@@ -263,10 +257,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-flex content-footer">
-                    <div><img class="img-fluid ml-2 mr-2" src="{{asset('frontEnd/assets/img/rider-page/plus.png')}}" alt=""></div>
-                    <p class="font-weight-bold p-0">How to sign up a faretrim account? </p>
-                </div>
+               
             </div>
         </div>
         <div class="frequent-btn text-center">

@@ -26,7 +26,7 @@
 <section class="become-driver-area">
     <div class="container">
         <div class="header-become-driver">
-            <h5>Why become a FareTrim Driver?</h5>
+            <h5>Why become a faretrim Driver?</h5>
         </div>
         <div class="parent-grid-for-become-a-driver">
             <div class="text-center">
@@ -60,7 +60,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h1 class="section_title animate__animated animate__fadeInUp animate__delay-2s">
-                    How FareTrim Driver App works
+                    How faretrim Driver App works
                 </h1>
             </div>
         </div>
@@ -102,8 +102,8 @@
         <div class="join-us-grid">
             <div class="join-us-content-black">
                 <div class="text-center text-white join-us-text-width">
-                    <p>“As a driver, FareTrim is flawless. The driver support team are well trained. Have excellent manners and are always helpful.”</p>
-                    <p>John Smith, FareTrim driver.</p>
+                    <p>“As a driver, faretrim is flawless. The driver support team are well trained. Have excellent manners and are always helpful.”</p>
+                    <p>John Smith, faretrim driver.</p>
                 </div>
             </div>
             <div class="join-us-content-red">
@@ -121,7 +121,7 @@
 <section class="">
     <div class="container">
         <div class="header-become-driver">
-            <h5>Easy to join FareTrim</h5>
+            <h5>Easy to join faretrim</h5>
         </div>
         <div class="parent-grid-for-become-a-driver">
             <div class="text-center">
@@ -155,7 +155,7 @@
 <section class="requirements-area">
     <div class="container">
         <div class="requirement-header">
-            <h6>Requirements to drive for FareTrim</h6>
+            <h6>Requirements to drive for faretrim</h6>
         </div>
         <div class="requirement-grid">
             <div class="text-center text-white requirement-img">
@@ -176,23 +176,19 @@
             <div class="text-center text-white requirement-img">
                 <img class="img-fluid" src="{{asset('frontEnd/assets/img/driver-page/android.png')}}" alt="">
                 <p>iPhone or Android phone to use the 
-                    FareTrim driver app
+                    faretrim driver app
                 </p>
             </div>
         </div>
     </div>
 </section>
 <!-- Driver GuideLine Area -->
+@if(!empty($target))
 <section class="driver-guideline">
     <div class="container">
         <div class="text-center driver-guideline-content">
-            <h6>Driver Guidelines</h6>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                Lorem Ipsum has been the industry's 
-                standard dummy text ever since the 1500s, when an unknown printe
+            <h6>{{$target->title}}</h6>
+            <p>{!!Str::limit($target->description,400)!!}
             </p>
             <a href="{{url('driver-guideline')}}">
                 <button>Learn More</button>
@@ -200,5 +196,6 @@
         </div>
     </div>
 </section>
+@endif
 @include('frontEnd.layouts.download-app')
 @endsection

@@ -13,7 +13,7 @@
                             <h3 class="mb-0">@lang('lang.REDUCE_FARE' ) <i class="fa fa-car-side"></i></h3>
                         </div>
                     </div>
-                     @if ($message = Session::get('success'))
+                    @if ($message = Session::get('success'))
                     <div class="alert alert-success">
                         <p>{{ $message }}</p>
                     </div>
@@ -25,28 +25,27 @@
                         @csrf
                         <div class="row">
                             <div class="input-group col-md-6">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="fa fa-dollar-sign"></i>
-                                    </span>
-                                </div>
                                 {!! Form::text('reduce_fare_percentage',$reduceFare->reduce_fare_percentage,['class' => 'form-control','placeholder' =>'Enter reduce fare percentage']) !!}
-                                @if ($errors->has('reduce_fare_percentage'))
-                                <span class="invalid-feedback" style="display: block;" role="alert">
-                                    <strong>{{ $errors->first('reduce_fare_percentage') }}</strong>
-                                </span>
-                                @endif
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="basic-addon2">Percentage</span>
+                                </div>
                             </div>
+                            @if ($errors->has('reduce_fare_percentage'))
+                            <span class="invalid-feedback" style="display: block;" role="alert">
+                                <strong>{{ $errors->first('reduce_fare_percentage') }}</strong>
+                            </span>
+                            @endif
                         </div>
-                       
-                        <div class="card-footer ">
-                            <button type="submit" class="btn btn-info btn-round">{{ __('Update') }}</button>
-                        </div>
-                        {!! Form::close() !!}
                     </div>
+
+                    <div class="card-footer ">
+                        <button type="submit" class="btn btn-info btn-round">{{ __('Update') }}</button>
+                    </div>
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection

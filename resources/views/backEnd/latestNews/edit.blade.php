@@ -10,7 +10,7 @@
                 <div class="card-header border-0">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h3 class="mb-0">Edit Latest News<i class="nc-icon nc-single-02"></i></h3>
+                            <h3 class="mb-0">Edit Latest News <i class="fa fa-edit"></i></h3>
                         </div>
                     </div>
 
@@ -36,9 +36,9 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="input-group col-md-8">
-                                <textarea name="description" class="form-control" id="editor">
-                                    {{$latestNews->description }}
+                            <div class="input-group col-md-12">
+                                <textarea name="description" class="form-control" id="editor-{{$latestNews->id}}">
+                                    
                                 </textarea>
                                 @if ($errors->has('description'))
                                 <span class="invalid-feedback" style="display: block;" role="alert">
@@ -118,9 +118,9 @@
     </div>
 </div>
 @endsection
-<!--@push('scripts')
+@push('scripts')
 <script type="text/javascript">
-           var editor = new Jodit('#editor');
-            editor.value = '{!!$latestNews->description!!}';
+    var editor = new Jodit("#editor-{{$latestNews->id}}");
+    editor.value = '{!! $latestNews->description !!}';
 </script>
-@endpush-->
+@endpush

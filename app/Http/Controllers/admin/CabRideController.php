@@ -9,33 +9,39 @@ use App\Driver;
 use DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Helpers\Helper;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ExcelExport;
+use PDF;
 
-class CabRideController extends Controller
-{
+
+class CabRideController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         // $cabrides = CabRide::latest()->paginate(10);
 
-        $ride_status = RideStatus::all()->pluck('name','id');
+        $ride_status = RideStatus::all()->pluck('name', 'id');
 
-         $drivers = Driver::where('active',1)
-        ->where('trash_status',0)
-        ->pluck('full_name','id')->toArray();
+        $drivers = Driver::where('active', 1)
+                        ->where('trash_status', 0)
+                        ->pluck('full_name', 'id')->toArray();
 
-        $passengers = Passenger::where('active',1)
-        ->where('trash_status',0)
-        ->pluck('full_name','id')->toArray();
+        $passengers = Passenger::where('active', 1)
+                        ->where('trash_status', 0)
+                        ->pluck('full_name', 'id')->toArray();
 
-        $cabrides = CabRide::query()
-        ->where('ridestatus_id', 6)
-        ->latest()
-        ->paginate(10);
-        return view('backEnd.cabride.index',compact('cabrides','ride_status','drivers','passengers'));
+        $cabrides = CabRide::latest()->paginate(10);
+
+
+
+//        echo "<pre>";print_r($cabrides->toArray());exit;
+
+        return view('backEnd.cabride.index', compact('cabrides', 'ride_status', 'drivers', 'passengers'));
     }
 
     /**
@@ -43,8 +49,7 @@ class CabRideController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
@@ -54,9 +59,8 @@ class CabRideController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-
+    public function store(Request $request) {
+        
     }
 
     /**
@@ -65,10 +69,8 @@ class CabRideController extends Controller
      * @param  \App\CabRide  $cabRide
      * @return \Illuminate\Http\Response
      */
-    public function show(CabRide $cabRide)
-    {
-        return view('backEnd.cabride.modal',compact('cabRide'));
-        
+    public function show(CabRide $cabRide) {
+        return view('backEnd.cabride.modal', compact('cabRide'));
     }
 
     /**
@@ -77,8 +79,7 @@ class CabRideController extends Controller
      * @param  \App\CabRide  $cabRide
      * @return \Illuminate\Http\Response
      */
-    public function edit(CabRide $cabRide)
-    {
+    public function edit(CabRide $cabRide) {
         //
     }
 
@@ -89,8 +90,7 @@ class CabRideController extends Controller
      * @param  \App\CabRide  $cabRide
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CabRide $cabRide)
-    {
+    public function update(Request $request, CabRide $cabRide) {
         //
     }
 
@@ -100,58 +100,60 @@ class CabRideController extends Controller
      * @param  \App\CabRide  $cabRide
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CabRide $cabRide)
-    {
+    public function destroy(CabRide $cabRide) {
         $cabRide->delete();
         return redirect()->route('cabe-ride.index')
-                    ->with('success','Ride deleted successfully');
-
+                        ->with('success', 'Ride deleted successfully');
     }
-    public function pending()
-    {
+
+    public function pending() {
         $cabrides = CabRide::query()
-        ->where('ridestatus_id', 1)
-        ->latest()
-        ->paginate(10);
-        return view('backEnd.cabride.pending',compact('cabrides'));
+                ->where('ridestatus_id', 1)
+                ->latest()
+                ->paginate(10);
+        return view('backEnd.cabride.pending', compact('cabrides'));
     }
-    public function discount()
-    {
-         $ride_status = RideStatus::all()->pluck('name','id');
 
-         $drivers = Driver::where('active',1)
-        ->where('trash_status',0)
-        ->pluck('full_name','id')->toArray();
+    public function discount() {
+        $ride_status = RideStatus::all()->pluck('name', 'id');
+
+        $drivers = Driver::where('active', 1)
+                        ->where('trash_status', 0)
+                        ->pluck('full_name', 'id')->toArray();
 
 
-        $passengers = Passenger::where('active',1)
-        ->where('trash_status',0)
-        ->pluck('full_name','id')->toArray();;
+        $passengers = Passenger::where('active', 1)
+                        ->where('trash_status', 0)
+                        ->pluck('full_name', 'id')->toArray();
+        ;
 
 
         $cabrides = CabRide::query()
-       
-        ->latest()
-        ->paginate(10);
-        return view('backEnd.cabride.discount',compact('cabrides','ride_status','drivers','passengers'));
+                ->latest()
+                ->paginate(10);
+        return view('backEnd.cabride.discount', compact('cabrides', 'ride_status', 'drivers', 'passengers'));
     }
-    public function filter(Request $request)
-    {
+
+    public function filter(Request $request) {
         $status_id = $request->status_id;
         $driver_id = $request->driver_id;
         $passenger_id = $request->passenger_id;
+
+       
         // print_r($request->all());
 
-        $ride_status = RideStatus::all()->pluck('name','id');
+        // echo "<pre>";print_r($request->all());exit;
 
-        $drivers = Driver::where('active',1)
-        ->where('trash_status',0)
-        ->pluck('full_name','id')->toArray();
+        $ride_status = RideStatus::all()->pluck('name', 'id');
+
+        $drivers = Driver::where('active', 1)
+                        ->where('trash_status', 0)
+                        ->pluck('full_name', 'id')->toArray();
 
 
-        $passengers = Passenger::where('active',1)
-        ->where('trash_status',0)
-        ->pluck('full_name','id')->toArray();
+        $passengers = Passenger::where('active', 1)
+                        ->where('trash_status', 0)
+                        ->pluck('full_name', 'id')->toArray();
 
         // $cabrides = CabRide::all();
 
@@ -162,15 +164,63 @@ class CabRideController extends Controller
         }
 
         if (!empty($driver_id)) {
-            $cabs->where('driver_id','=', $request->driver_id);
+            $cabs->where('driver_id', '=', $request->driver_id);
         }
 
         if (!empty($passenger_id)) {
-            $cabs->where('passenger_id','=', $request->passenger_id);
+            $cabs->where('passenger_id', '=', $request->passenger_id);
         }
 
-        $cabrides = $cabs->get();
 
-        return view('backEnd.cabride.index',compact('cabrides','ride_status','drivers','passengers'));
+        if (!empty($request->search_text)) {
+            $searchText = $request->search_text;
+            $cabs->where(function ($query) use ($searchText) {
+                $query->where('pickup_address', 'like', "%{$searchText}%")
+                        ->orWhere('destination_address', 'like', "%{$searchText}%")
+                        ->orWhere('total_fare_amount', 'like', "%{$searchText}%")
+                        ->orWhere('riding_distance', 'like', "%{$searchText}%")
+                         ->orWhere('cancel_issue', 'like', "%{$searchText}%") 
+                        ->orWhere('start_time', 'like', "%{$searchText}%")
+                        ->orWhere('end_time', 'like', "%{$searchText}%")
+                        ->orWhere('bid_amount', 'like', "%{$searchText}%");
+            });
+        }
+
+        if ($request->view == 'print') {
+            $cabrides = $cabs->get();
+            return view('backEnd.cabride.print.print-ride-list')->with(compact('cabrides', 'request','ride_status','drivers','passengers'));
+        } else if ($request->view == 'pdf') {
+            $cabrides = $cabs->get();
+            $pdf = PDF::loadView('backEnd.cabride.print.print-ride-list', compact('cabrides', 'request','ride_status','drivers','passengers'))
+                    ->setPaper('a4', 'portrait')
+                    ->setOptions(['defaultFont' => 'sans-serif']);
+            $fileName = "cab_ride_list_" . date('d_m_Y_H_i_s');
+            return $pdf->download("$fileName.pdf");
+        } else if ($request->view == 'excel') {
+            $cabrides = $cabs->get();
+            $viewFile = 'backEnd.cabride.print.print-ride-list';
+            $fileName = "cab_ride_list_" . date('d_m_Y_H_i_s');
+            $downLoadFileName = "$fileName.xlsx";
+            $data['cabrides'] = $cabrides;
+            $data['request'] = $request;
+            $data['ride_status'] = $ride_status;
+            $data['drivers'] = $drivers;
+            $data['passengers'] = $passengers;
+            return Excel::download(new ExcelExport($viewFile, $data), $downLoadFileName);
+        }
+
+        $cabrides = $cabs->paginate(10);
+
+        return view('backEnd.cabride.index', compact('cabrides', 'ride_status', 'drivers', 'passengers'));
     }
+
+    public function completeRide() {
+        $cabrides = CabRide::query()
+                ->where('ridestatus_id', 6)
+                ->latest()
+                ->paginate(10);
+        return view('backEnd.cabride.complete', compact('cabrides'));
+    }
+
+
 }

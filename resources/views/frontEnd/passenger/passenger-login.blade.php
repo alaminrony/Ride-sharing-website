@@ -38,10 +38,9 @@
                             <hr />
                             <div class="Position-Middle">OR</div>
                             <div class="driver-sign-up-2btn">
-                                <button class="driver-sign-up-fb-btn"><img class="mr-2" src="{{asset('frontEnd/assets/img/driver-sign-up/fb.png')}}" alt=""> Log in with Facebook</button> <br>
-                                <button class="driver-sign-up-google-btn"><img class="mr-2" src="{{asset('frontEnd/assets/img/driver-sign-up/google.png')}}" alt=""> Connect with Google</button>
-                                <!--<p>Have an account? <span><a href="{{url('/front-login')}}">Log In</a></span></p>-->
-                                <p>Have an account? <span><a href="{{url('passengerLogin')}}">Log In</a></span></p>
+                                <button onclick="window.open('{{url('passenger/login/facebook')}}', '_self'); return false;" class="driver-sign-up-fb-btn"><img class="mr-2" src="{{asset('frontEnd/assets/img/driver-sign-up/fb.png')}}" alt=""> Log in with Facebook</button><br>
+                                <button onclick="window.open('{{url('passenger/login/google')}}', '_self'); return false;" class="driver-sign-up-google-btn"><img class="mr-2" src="{{asset('frontEnd/assets/img/driver-sign-up/google.png')}}" alt=""> Connect with Google</button>
+                                <p>Have an account? <span><a href="{{url('passenger-signup')}}">Sign Up?</a></span></p>
                             </div>
                         </div>
                     </section>
@@ -240,7 +239,7 @@
                     <div class="driver-sign-up-2btn">
                         <button onclick="window.open('{{url('passenger/login/facebook')}}', '_self'); return false;" class="driver-sign-up-fb-btn"><img class="mr-2" src="{{asset('frontEnd/assets/img/driver-sign-up/fb.png')}}" alt=""> Log in with Facebook</button><br>
                         <button onclick="window.open('{{url('passenger/login/google')}}', '_self'); return false;" class="driver-sign-up-google-btn"><img class="mr-2" src="{{asset('frontEnd/assets/img/driver-sign-up/google.png')}}" alt=""> Connect with Google</button>
-                        <p>Have an account? <span><a href="{{url('driver-signup')}}">Sign Up?</a></span></p>
+                        <p>Have an account? <span><a href="{{url('passenger-signup')}}">Sign Up?</a></span></p>
                     </div>
                 </div>
             </section>
@@ -258,7 +257,7 @@
                         <span class="verification">Verification Code has been sent to your phone</span>
                         <div class="text-right resend-btn">
                             <a href="#">
-                                <button>Resend</button>
+                                <button id="resendOtp">Resend</button>
                             </a>
                         </div>
                         <div class="gridInput">
@@ -274,7 +273,7 @@
                             <button class="driver-sign-up-btn">Next</button>
                         </a>
                         <div class="have-account">
-                            <p class="font-weight-normal">Have an account? <span><a href="{{url('driverLogin')}}">Log In</a></span></p>
+                            <p class="font-weight-normal">Have an account? <span><a href="{{url('passengerLogin')}}">Log In</a></span></p>
                         </div>
                     </div>
                 </div>

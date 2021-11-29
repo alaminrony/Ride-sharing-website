@@ -119,19 +119,19 @@
                                             <li class="list-inline-item" id='1'><a href="#" <?= $vehicle->wheelchair == '1' ? 'class="red-color"' : '' ?>>Yes</a></li>
                                             <li class="list-inline-item" id='0'><a href="#" <?= $vehicle->wheelchair == '0' ? 'class="red-color"' : '' ?>>No</a></li>
                                         </ul>
-<!--                                        <ul class="list-inline countNumber pt-2" id="wheelchairNumber">
-                                            <li class="list-inline-item" id='0'><a href="#" <?= $vehicle->wheelchair == '0' ? 'class="red-color"' : '' ?>>0</a></li>
-                                            <li class="list-inline-item" id='1'><a href="#" <?= $vehicle->wheelchair == '1' ? 'class="red-color"' : '' ?>>1</a></li>
-                                            <li class="list-inline-item" id='2'><a href="#" <?= $vehicle->wheelchair == '2' ? 'class="red-color"' : '' ?>>2</a></li>
-                                            <li class="list-inline-item" id='3'><a href="#" <?= $vehicle->wheelchair == '3' ? 'class="red-color"' : '' ?>>3</a></li>
-                                            <li class="list-inline-item" id='4'><a href="#" <?= $vehicle->wheelchair == '4' ? 'class="red-color"' : '' ?>>4</a></li>
-                                            <li class="list-inline-item" id='5'><a href="#" <?= $vehicle->wheelchair == '5' ? 'class="red-color"' : '' ?>>5</a></li>
-                                            <li class="list-inline-item" id='6'><a href="#" <?= $vehicle->wheelchair == '6' ? 'class="red-color"' : '' ?>>6</a></li>
-                                            <li class="list-inline-item" id='7'><a href="#" <?= $vehicle->wheelchair == '7' ? 'class="red-color"' : '' ?>>7</a></li>
-                                            <li class="list-inline-item" id='8'><a href="#" <?= $vehicle->wheelchair == '8' ? 'class="red-color"' : '' ?>>8</a></li>
-                                            <li class="list-inline-item" id='9'><a href="#" <?= $vehicle->wheelchair == '9' ? 'class="red-color"' : '' ?>>9</a></li>
-                                            <li class="list-inline-item" id='10'><a href="#" <?= $vehicle->wheelchair == '10' ? 'class="red-color"' : '' ?>>10</a></li>
-                                        </ul>-->
+                                        <!--                                        <ul class="list-inline countNumber pt-2" id="wheelchairNumber">
+                                                                                    <li class="list-inline-item" id='0'><a href="#" <?= $vehicle->wheelchair == '0' ? 'class="red-color"' : '' ?>>0</a></li>
+                                                                                    <li class="list-inline-item" id='1'><a href="#" <?= $vehicle->wheelchair == '1' ? 'class="red-color"' : '' ?>>1</a></li>
+                                                                                    <li class="list-inline-item" id='2'><a href="#" <?= $vehicle->wheelchair == '2' ? 'class="red-color"' : '' ?>>2</a></li>
+                                                                                    <li class="list-inline-item" id='3'><a href="#" <?= $vehicle->wheelchair == '3' ? 'class="red-color"' : '' ?>>3</a></li>
+                                                                                    <li class="list-inline-item" id='4'><a href="#" <?= $vehicle->wheelchair == '4' ? 'class="red-color"' : '' ?>>4</a></li>
+                                                                                    <li class="list-inline-item" id='5'><a href="#" <?= $vehicle->wheelchair == '5' ? 'class="red-color"' : '' ?>>5</a></li>
+                                                                                    <li class="list-inline-item" id='6'><a href="#" <?= $vehicle->wheelchair == '6' ? 'class="red-color"' : '' ?>>6</a></li>
+                                                                                    <li class="list-inline-item" id='7'><a href="#" <?= $vehicle->wheelchair == '7' ? 'class="red-color"' : '' ?>>7</a></li>
+                                                                                    <li class="list-inline-item" id='8'><a href="#" <?= $vehicle->wheelchair == '8' ? 'class="red-color"' : '' ?>>8</a></li>
+                                                                                    <li class="list-inline-item" id='9'><a href="#" <?= $vehicle->wheelchair == '9' ? 'class="red-color"' : '' ?>>9</a></li>
+                                                                                    <li class="list-inline-item" id='10'><a href="#" <?= $vehicle->wheelchair == '10' ? 'class="red-color"' : '' ?>>10</a></li>
+                                                                                </ul>-->
                                         <span class="text-danger" id="wheelchair_error"></span>
                                     </div>
                                     <input type="hidden" name="wheelchair" id="wheelchairCapacity" value="{{$vehicle->wheelchair}}">
@@ -165,81 +165,87 @@
 @endsection
 @push('script')
 <script type="text/javascript">
-        $(document).on('click', '#addImage', function (event) {
-            event.preventDefault();
-            $('#browsCarAdd').click();
-        });
+    $(document).on('click', '#addImage', function (event) {
+        event.preventDefault();
+        $('#browsCarAdd').click();
+    });
 
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $('#defaultImage').hide();
-                    $('#previewImage').show().attr('src', e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]); // convert to base64 string
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#defaultImage').hide();
+                $('#previewImage').show().attr('src', e.target.result);
             }
+            reader.readAsDataURL(input.files[0]); // convert to base64 string
         }
+    }
 
-        $("#browsCarAdd").change(function () {
-            readURL(this);
-        });
+    $("#browsCarAdd").change(function () {
+        readURL(this);
+    });
 
-        $(document).on('click', '#passengerCapacityValue li', function (event) {
-            event.preventDefault();
-            var value = $(this).attr('id');
-            $('#passengerCapacity').val(value);
-        });
+    $(document).on('click', '#passengerCapacityValue li', function (event) {
+        event.preventDefault();
+        var value = $(this).attr('id');
+        $('#passengerCapacity').val(value);
+    });
 
-        $(document).on('click', '#childrenNumber li', function (event) {
-            event.preventDefault();
-            var value = $(this).attr('id');
-            $('#childrenCapacity').val(value);
-        });
-        $(document).on('click', '#wheelchairNumber li', function (event) {
-            event.preventDefault();
-            var value = $(this).attr('id');
-            $('#wheelchairCapacity').val(value);
-        });
-        $(document).on('click', '#updateVehiclesFormSubmit', function (event) {
-            event.preventDefault();
-            var formData = new FormData($('#updateVehicle')[0]);
-            $.ajax({
-                url: "{{ route('driver.updateVehicle')}}",
-                data: formData,
-                dataType: "json",
-                cache: false,
-                contentType: false,
-                processData: false,
-                type: 'POST',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function (data) {
-                    $('#model_number_error').text('');
-                    $('#cabtype_id_error').text('');
-                    $('#color_error').text('');
-                    $('#number_plate_error').text('');
-                    $('#passenger_capacity_error').text('');
-                    $('#children_error').text('');
-                    $('#wheelchair_error').text('');
-                    $('#photo_error').text('');
-                    if (data.errors) {
-                        $('#model_number_error').text(data.errors.model_number);
-                        $('#cabtype_id_error').text(data.errors.cabtype_id);
-                        $('#color_error').text(data.errors.color);
-                        $('#number_plate_error').text(data.errors.number_plate);
-                        $('#passenger_capacity_error').text(data.errors.passenger_capacity);
-                        $('#children_error').text(data.errors.children);
-                        $('#wheelchair_error').text(data.errors.wheelchair);
-                        $('#photo_error').text(data.errors.photo);
-                    }
-                    if (data.response == 'success') {
-                        $('.alert-success').show().text('Vehicle updated successfully!!');
-                    }
+    $(document).on('click', '#childrenNumber li', function (event) {
+        event.preventDefault();
+        var value = $(this).attr('id');
+        $('#childrenCapacity').val(value);
+    });
+    $(document).on('click', '#wheelchairNumber li', function (event) {
+        event.preventDefault();
+        var value = $(this).attr('id');
+        $('#wheelchairCapacity').val(value);
+    });
+    $(document).on('click', '#updateVehiclesFormSubmit', function (event) {
+        event.preventDefault();
+        var formData = new FormData($('#updateVehicle')[0]);
+        $.ajax({
+            url: "{{ route('driver.updateVehicle')}}",
+            data: formData,
+            dataType: "json",
+            cache: false,
+            contentType: false,
+            processData: false,
+            type: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            beforeSend: function () {
+                $('#ajaxLoader').show();
+            },
+            success: function (data) {
+                $('#model_number_error').text('');
+                $('#cabtype_id_error').text('');
+                $('#color_error').text('');
+                $('#number_plate_error').text('');
+                $('#passenger_capacity_error').text('');
+                $('#children_error').text('');
+                $('#wheelchair_error').text('');
+                $('#photo_error').text('');
+                if (data.errors) {
+                    $('#model_number_error').text(data.errors.model_number);
+                    $('#cabtype_id_error').text(data.errors.cabtype_id);
+                    $('#color_error').text(data.errors.color);
+                    $('#number_plate_error').text(data.errors.number_plate);
+                    $('#passenger_capacity_error').text(data.errors.passenger_capacity);
+                    $('#children_error').text(data.errors.children);
+                    $('#wheelchair_error').text(data.errors.wheelchair);
+                    $('#photo_error').text(data.errors.photo);
                 }
-            });
+                if (data.response == 'success') {
+                    $('.alert-success').show().text('Vehicle updated successfully!!');
+                }
+            },
+            complete: function () {
+                $('#ajaxLoader').hide();
+            },
         });
+    });
 </script>
 @endpush
 

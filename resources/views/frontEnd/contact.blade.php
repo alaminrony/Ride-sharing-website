@@ -6,7 +6,7 @@
             <div class="contact-img">
                 <div class="contact-text">
                     <h1>Contact Us</h1>
-                    <p>Save money. Meet new people. Fare Trim!</p>
+                    <p>Save money. Meet new people. faretrim!</p>
                 </div>
             </div>
         </div>
@@ -29,7 +29,10 @@
         </div>
         <div class="send-massage">
             <p><span>Send Message</span> <br> Have a query? Submit to us here.</p>
-            @include('frontEnd.layouts.alert-message')
+            <div style="margin: 15px 0px;">
+                @include('frontEnd.layouts.alert-message')
+            </div>
+
             <div class="message-box">
                 <form id="contactForm">
                     <div class="form-row">

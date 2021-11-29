@@ -16,14 +16,10 @@ class TextWidgetController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-
-
-
-
     public function index() {
         $targets = TextWidget::latest()->paginate(5);
-        $sectionArr = ['1'=>'Home (section 3)','2'=>'Driver page (section 7)'];
-        return view('backEnd.textWidget.index', compact('targets','sectionArr'));
+        $sectionArr = ['1' => 'Home (About faretrim)', '2' => 'Driver page (Driver guidelines)'];
+        return view('backEnd.textWidget.index', compact('targets', 'sectionArr'));
     }
 
     /**
@@ -33,7 +29,7 @@ class TextWidgetController extends Controller {
      */
     public function create() {
 //        echo "<pre>";print_r('hello');exit;
-       $sectionArr = ['1'=>'Home (section 3)','2'=>'Driver page (section 7)'];
+        $sectionArr = ['1' => 'Home (About faretrim)', '2' => 'Driver page (Driver guidelines)'];
         return view('backEnd.textWidget.create')->with(compact('sectionArr'));
     }
 
@@ -44,7 +40,7 @@ class TextWidgetController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-       // echo "<pre>";print_r($request->all());exit;
+        // echo "<pre>";print_r($request->all());exit;
         $request->validate([
             'title' => 'required',
             'description' => 'required',
@@ -55,8 +51,8 @@ class TextWidgetController extends Controller {
         $target = new TextWidget;
         $target->title = $request->title;
         $target->description = $request->description;
-        $target->content_link = !empty($request->content_link) ?urlencode($request->content_link) : '';
-        
+        $target->content_link = !empty($request->content_link) ? urlencode($request->content_link) : '';
+
         if ($files = $request->file('image')) {
             $imagePath = 'uploads/textWidget/';
             $imageName = $imagePath . '' . uniqid() . "." . date('Ymd') . "." . $files->getClientOriginalExtension();
@@ -88,9 +84,9 @@ class TextWidgetController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request) {
-        $sectionArr = ['1'=>'Home (section 3)','2'=>'Driver page (section 7)'];
+        $sectionArr = ['1' => 'Home (About faretrim)', '2' => 'Driver page (Driver guidelines)'];
         $target = TextWidget::where('id', $request->id)->first();
-        return view('backEnd.textWidget.edit', compact('target','sectionArr'));
+        return view('backEnd.textWidget.edit', compact('target', 'sectionArr'));
     }
 
     /**
@@ -103,7 +99,7 @@ class TextWidgetController extends Controller {
     public function update(Request $request) {
         // echo "<pre>";print_r($request->all());exit;
         $target = TextWidget::where('id', $request->id)->first();
-         $request->validate([
+        $request->validate([
             'title' => 'required',
             'description' => 'required',
             'position' => 'required',
@@ -112,8 +108,8 @@ class TextWidgetController extends Controller {
 
         $target->title = $request->title;
         $target->description = $request->description;
-        $target->content_link = !empty($request->content_link) ?urlencode($request->content_link) : '';
-        
+        $target->content_link = !empty($request->content_link) ? urlencode($request->content_link) : '';
+
         if ($files = $request->file('image')) {
             $imagePath = 'uploads/textWidget/';
             $imageName = $imagePath . '' . uniqid() . "." . date('Ymd') . "." . $files->getClientOriginalExtension();

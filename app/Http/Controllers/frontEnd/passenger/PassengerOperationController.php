@@ -10,6 +10,7 @@ use App\Notifications\verifyEmail;
 use App\Driver;
 use App\Passenger;
 use App\OtpVerify;
+use App\DriverDevice;
 use Validator;
 use Session;
 use Image;
@@ -48,8 +49,8 @@ class PassengerOperationController extends Controller {
             return response()->json(['response' => 'new', 'message' => "This is a new user"]);
         }
     }
-    
-     public function phoneExistsForgetPass(Request $request) {
+
+    public function phoneExistsForgetPass(Request $request) {
         $rules = [
             'phone' => 'required|numeric',
         ];
@@ -201,10 +202,6 @@ class PassengerOperationController extends Controller {
         }
     }
 
-//    public function loginPassenger(Request $request){
-//        echo "hello";exit;
-//    }
-
     public function passenger_login(Request $request) {
 
 //        echo "<pre>";
@@ -240,8 +237,8 @@ class PassengerOperationController extends Controller {
             return response()->json(['response' => 'error', 'message' => 'Password does not matched']);
         }
     }
-    
-        public function sendEmail($passenger) {
+
+    public function sendEmail($passenger) {
         $details = [
             'greeting' => 'Hi ' . $passenger->full_name,
             'body' => "Please confirm that {$passenger->email} is your email address for clicking this button",
@@ -261,9 +258,16 @@ class PassengerOperationController extends Controller {
 
         $passenger = Passenger::where('email', $email)->first();
 
+
         if ($passenger) {
             $passenger->mail_verification_status = '1';
             if ($passenger->save()) {
+                $fcm_tokens = DriverDevice::where(['driver_id' => $passenger->id, 'user_type' => 2])->pluck('token')->toArray();
+                if (!empty($fcm_tokens)) {
+                    $title = "Hello {$passenger->full_name}";
+                    $message = "Your Mail Verification complete successfully !!";
+                    sendPushNotification($fcm_tokens, $title, $message);
+                }
                 Session::flash('success', 'Your Mail Verification complete successfully !!');
                 return redirect('mail-verification-success');
 //                return response()->json(['response' => 'success', 'message' => 'Your Email account is activated.', 'email' => $email, 'verified_status' => 1]);
@@ -478,7 +482,7 @@ class PassengerOperationController extends Controller {
             return abort(404);
         }
         $cabRides = CabRide::where('passenger_id', $request->passengerId)->where('ridestatus_id', '3')->select('id', 'start_time', 'end_time', 'pickup_address', 'destination_address', 'ridestatus_id');
-        
+
         if (!empty($request->start_time) && !empty($request->end_time)) {
             $cabRides = $cabRides->whereBetween('created_at', [$request->start_time . " 00:00:00", $request->end_time . " 23:59:59"]);
         }
@@ -513,7 +517,7 @@ class PassengerOperationController extends Controller {
 //        echo "<pre>";print_r($passNotifications->toArray());exit;
         return view('frontEnd.passenger.passenger-notification', compact('passenger', 'passNotifications'));
     }
-    
+
     public function rideDetails(Request $request) {
 //        echo "<pre>";print_r($request->all());exit;
         if (!empty($request->passengerId)) {
@@ -528,10 +532,9 @@ class PassengerOperationController extends Controller {
         if (!empty($rideDetails->driver_id)) {
             $driverDetails = Driver::select('id as driver_id', 'full_name', 'phone', 'profile_photo')->where('id', $rideDetails->driver_id)->first();
         }
-        return view('frontEnd.passenger.ride-details', compact('passenger','rideDetails','driverDetails','rideStatus'));
+        return view('frontEnd.passenger.ride-details', compact('passenger', 'rideDetails', 'driverDetails', 'rideStatus'));
     }
-    
-   
+
     public function resetPassword(Request $request) {
         $rules = [
             'password' => 'required|confirmed|string|min:6',
@@ -542,7 +545,7 @@ class PassengerOperationController extends Controller {
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
-            return response()->json(['errors'=>$validator->errors()]);
+            return response()->json(['errors' => $validator->errors()]);
         }
 
         $passenger = Passenger::where('phone', $request->phone)->first();
@@ -553,9 +556,9 @@ class PassengerOperationController extends Controller {
             return response()->json(['response' => 'error', 'message' => 'Password does not reset']);
         }
     }
-    
-    public function riderPage(Request $request){
-        $passengerSlider = PassengerSlider::where('status', '1')->latest()->take(5)->get();
+
+    public function riderPage(Request $request) {
+        $passengerSlider = PassengerSlider::where('status', '1')->orderBy('id', 'asc')->get();
         return view('frontEnd.rider-page')->with(compact('passengerSlider'));
     }
 

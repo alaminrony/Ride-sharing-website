@@ -41,7 +41,7 @@
                     <div class="blog-right-content">
                         <a href="{{url("latest-news/{$news->id}/details")}}"><h5>{{$news->title}}</h5></a>
                         <p class="admin">Created By: {{$users[$news->created_by]??''}} <span class="pl-2">Date: {{date('j M Y \a\t h:i A',strtotime($news->created_at))}}</span></p>
-                        <p class="main-content">{{Str::limit($news->description,200)}}<span class="seeMore"><a href="{{url("latest-news/{$news->id}/details")}}">See More</a></span>
+                        <p class="main-content">{!! Str::limit($news->description,200) !!}<span class="seeMore"><a href="{{url("latest-news/{$news->id}/details")}}">See More</a></span>
                         </p>
                     </div>
                 </div>

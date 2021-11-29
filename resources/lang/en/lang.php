@@ -159,6 +159,9 @@ return [
     'LINK'=>'Link',
     'CONTENT_LINK'=>'Content Link',
     'POSITION'=>'Position',
-    
-
+    'ADD_TAXI_OPERATOR'=>'Add Taxi Operator', 
+    'TAXI_OPERATOR_NAME'=>'Taxi Operator Name',
+    'TAXI_OPERATOR'=>'Taxi Operator',
+     'STATUS'=>'Status',
+     'SL'=>'Sl',
 ];

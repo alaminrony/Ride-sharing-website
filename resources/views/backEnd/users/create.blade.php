@@ -44,7 +44,7 @@
                                     <strong>{{ $errors->first('last_name') }}</strong>
                                 </span>
                                 @endif
-                                
+
                             </div>
                         </div>
                         <div class="row">
@@ -60,7 +60,7 @@
                                     <strong>{{ $errors->first('phone') }}</strong>
                                 </span>
                                 @endif
-                                
+
                             </div>
                             <div class="input-group col-md-6">
                                 <div class="input-group-prepend">
@@ -83,8 +83,8 @@
                                         <i class="nc-icon nc-key-25"></i>
                                     </span>
                                 </div>
-                                 {!! Form::password('password',['class' => 'form-control','placeholder' =>Lang::get('lang.PASSWORD')]) !!}
-                              
+                                {!! Form::password('password',['class' => 'form-control','placeholder' =>Lang::get('lang.PASSWORD')]) !!}
+
                                 @if ($errors->has('password'))
                                 <span class="invalid-feedback" style="display: block;" role="alert">
                                     <strong>{{ $errors->first('password') }}</strong>
@@ -98,7 +98,7 @@
                                     </span>
                                 </div>
                                 {!! Form::password('confirm_password',['class' => 'form-control','placeholder' =>Lang::get('lang.CON_PASSWORD')]) !!}
-                                
+
                                 @if ($errors->has('confirm_password'))
                                 <span class="invalid-feedback" style="display: block;" role="alert">
                                     <strong>{{ $errors->first('confirm_password') }}</strong>
@@ -136,35 +136,35 @@
 
                             {{-- <div class="input-group col-md-6">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="fa fa-question-circle"></i>
+                                <span class="input-group-text">
+                                    <i class="fa fa-question-circle"></i>
                                     </span>
                                 </div>
                                 {!! Form::select('status', ['0' => 'Inactive', '1' => 'Active'],null,['class'=>'form-control','placeholder'=> 'Status'])!!}
                                 @if ($errors->has('status'))
-                                <span class="invalid-feedback" style="display: block;" role="alert">
-                                    <strong>{{ $errors->first('status') }}</strong>
-                                </span>
-                                @endif
-                            </div> --}}
-                        </div>
-                        <div class="form-check text-left">
-                            <label class="form-check-label">
-                                {!! Form::checkbox('notify','1',false,['class'=>'form-check-input']) !!}
-                                <span class="form-check-sign"></span>
-                                @lang('lang.NOTIFY_USER')
-                            </label>
-                        </div>
-                        <div class="card-footer ">
-                            <button type="submit" class="btn btn-info btn-round">{{ __('Submit') }}</button>
-                            <a href="{{route('user.index')}}" class="btn btn-warning btn-round">Cancel</a>
-                        </div>
-                        {!! Form::close() !!}
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+                                        <span class="invalid-feedback" style="display: block;" ro                                            le="alert">
+                                                <strong>{{ $errors->first('statu                                            s') }}</strong>
+                                                                    </span>
+                                                                   @endif
+                                                                    </div> --}}
+                                                           </div>
+                        <div class="form-ch                                                eck text-left">
+                            <label class="for                                                    m-check-label">
+                                {!! Form::checkbox('notify','1',false,['class'=>'form-che                                                    ck-input']) !!}
+                                                    <span class="form-check-sign"></span>
+                                                    @lang('lang.NOTIFY_USER')
+                                                </label>
+                                            </div>
+                                            <div class="card-footer ">
+                                                <button type="submit" class="btn btn-info btn-round">{{ __('Submit') }}</button>
+                                                <a href="{{route('user.index')}}" class="btn btn-warning btn-round">Cancel</a>
+                                            </div>
+                                            {!! Form::close() !!}
+
+                                            </div>
+                                            </div>
+                                            </div>
+                                            </div>
+                                            </div>
+                                            </div>
+                                            @endsection

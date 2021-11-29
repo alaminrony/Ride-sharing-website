@@ -102,6 +102,7 @@ class CabController extends Controller
     public function show($id)
     {
         $cab = Cab::where('id',$id)->first();
+//        echo "<pre>";print_r($cab->toArray());exit;
         return view('backEnd.cab.modal',compact('cab'));
     }
 

@@ -4,7 +4,7 @@
 <section class="driver_dashboard_area">
     <div class="container">
         <div class="dashboard-grid">
-           @include('frontEnd.layouts.driver-profile-left-bar')
+            @include('frontEnd.layouts.driver-profile-left-bar')
             <div class="right-dashbord-content">
                 <div class="header">
                     <p>Notifications</p>
@@ -21,6 +21,8 @@
                         </div>
                     </div>
                     @endforeach
+                    @else
+                    <div>No data found</div>
                     @endif
                     <div class="d-flex justify-content-between mt-3">
                         {!!$driverNotifications->withQueryString()->links()!!}

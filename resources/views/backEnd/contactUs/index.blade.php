@@ -18,37 +18,43 @@
                             {{-- <a href="{{route('bill-options.create')}}" class="btn btn-sm btn-primary">@lang('lang.ADD_OPTION')</a> --}}
                         </div>
                     </div>
-                     @if ($message = Session::get('success'))
-                        <div class="alert alert-success">
-                            <p>{{ $message }}</p>
-                        </div>
+                    @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <p>{{ $message }}</p>
+                    </div>
                     @endif
                 </div>
                 <div class="table-responsive">
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col">@lang('lang.NAME') </th>
-                                <th scope="col">@lang('lang.EMAIL') </th>
-                                <th scope="col">@lang('lang.SUBJECT') </th>
-                                <th scope="col">@lang('lang.MESSAGE')</th>
-                                <th scope="col">@lang('lang.ACTION')</th>
+                                <th>SL </th>
+                                <th>@lang('lang.NAME') </th>
+                                <th>@lang('lang.EMAIL') </th>
+                                <th>@lang('lang.PHONE') </th>
+                                <th>@lang('lang.SUBJECT') </th>
+                                <th>@lang('lang.MESSAGE')</th>
+                                <th>@lang('lang.CREATED_AT')</th>
+                                <th>@lang('lang.ACTION')</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($contactUs as $contact)
+                            <?php $i = 0; ?>
+                            @foreach($targets as $contact)
+                            <?php $i++; ?>
                             <tr>
-                                <td>{{$contact->name}}</td>
+                                <td>{{$i}}</td>
+                                <td>{{$contact->first_name}} {{$contact->last_name}}</td>
                                 <td>{{$contact->email}}</td>
+                                <td>{{$contact->phone}}</td>
                                 <td>{{$contact->subject}}</td>
-                                <td>{{$contact->message}}</td>
-                                {{-- <td>{{ datefunction($subscriber->created_at) }}</td> --}}
-                               
-                                <td>
+                                <td>{{Str::limit($contact->message,30)}}</td>
+                                <td>{{ datefunction($contact->created_at) }}</td>
+                                <td width='10%'>
                                     <form action="{{ route('contact.destroy',$contact->id) }}" method="POST">
-                                       {{--  <a class="btn btn-sm btn-primary"onclick="edit({{$option->id}})" href="#">
-                                            <i class="fa fa-edit"></i>
-                                        </a> --}}
+                                        <a class="btn btn-sm btn-primary contactView"  type="button" data-toggle="modal" data-id='{{$contact->id}}' data-target='#viewCreateModal'>
+                                            <i class="fa fa-eye"></i>
+                                        </a> 
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" onclick="return confirm('Are you sure')" class="btn btn-sm btn-danger">
@@ -61,11 +67,40 @@
                         </tbody>
                     </table>
                 </div>
-                {{ $contactUs->links() }}
+                {{ $targets->links() }}
             </div>
         </div>
     </div>
 </div>
 
-
+<!--view contact Number Modal -->
+<div class="modal fade" id="viewCreateModal" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div id="CreateModalShow">
+        </div>
+    </div>
+</div>
+<!--end view Modal -->
 @endsection
+@push('scripts')
+<script type="text/javascript">
+    $(document).on('click', '.contactView', function () {
+        var id = $(this).data('id');
+        $.ajax({
+            url: "{{url('admin/contact-view')}}",
+            type: "post",
+            data: {id: id},
+            dataType: "json",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (data) {
+                console.log(data);
+//                $('#viewCreateModal').modal('show');
+                $('#CreateModalShow').html(data.data);
+            }
+        });
+
+    });
+</script>
+@endpush

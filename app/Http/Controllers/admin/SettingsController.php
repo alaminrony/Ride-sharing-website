@@ -99,6 +99,8 @@ class SettingsController extends Controller
         $settings->timeformat = $request->timeformat;
         $settings->rows_per_page = $request->rows_per_page;
         $settings->default_email = $request->default_email;
+        $settings->request_distance = $request->request_distance;
+        $settings->pickup_distance = $request->pickup_distance;
         $settings->logo = isset($request->logo)? $image : $settings->logo;
 
         $settings->save();

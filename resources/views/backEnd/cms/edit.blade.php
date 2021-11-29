@@ -10,7 +10,7 @@
                 <div class="card-header border-0">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h3 class="mb-0">Edit Latest News<i class="nc-icon nc-single-02"></i></h3>
+                            <h3 class="mb-0"><i class="fa fa-edit"></i> Edit CMS page</h3>
                         </div>
                     </div>
 
@@ -43,10 +43,10 @@
                                         <i class="nc-icon nc-single-02"></i>
                                     </span>
                                 </div>
-                                {!! Form::text('link',urldecode($target->link),['class' => 'form-control','placeholder' =>'Enter Page Link']) !!}
-                                @if ($errors->has('link'))
+                                {!! Form::text('slug',urldecode($target->slug),['class' => 'form-control','placeholder' =>'Enter Page slug']) !!}
+                                @if ($errors->has('slug'))
                                 <span class="invalid-feedback" style="display: block;" role="alert">
-                                    <strong>{{ $errors->first('link') }}</strong>
+                                    <strong>{{ $errors->first('slug') }}</strong>
                                 </span>
                                 @endif
                             </div>

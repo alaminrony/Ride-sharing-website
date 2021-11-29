@@ -10,7 +10,7 @@
                 <div class="card-header border-0">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h3 class="mb-0">Text widget Create<i class="nc-icon nc-single-02"></i></h3>
+                            <h3 class="mb-0"><i class="fa fa-plus-square"></i> Text widget Create</h3>
                         </div>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                                         <i class="nc-icon nc-single-02"></i>
                                     </span>
                                 </div>
-                                {!! Form::text('content_link',old('content_link'),['class' => 'form-control','placeholder' =>'Enter content Link']) !!}
+                                {!! Form::text('content_link',old('content_link'),['class' => 'form-control','placeholder' =>'Enter youtube Link']) !!}
                                 @if ($errors->has('content_link'))
                                 <span class="invalid-feedback" style="display: block;" role="alert">
                                     <strong>{{ $errors->first('content_link') }}</strong>
@@ -125,6 +125,7 @@
 @push('scripts')
 <script type="text/javascript">
            var editor = new Jodit('#editor');
-            editor.value = '{!!old('description')!!}';
+           var value = "{!! !empty(old('description'))? old('description') : '' !!}";
+            editor.value = value;
 </script>
 @endpush

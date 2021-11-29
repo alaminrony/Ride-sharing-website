@@ -142,7 +142,7 @@ class DriverController extends Controller {
 
                 Mail::send('email-template.driverRegister', ['data' => $data], function($message) use($toEmail, $toName, $subject) {
                     $message->to($toEmail, $toName)->subject($subject);
-                    $message->from('info@faretrim.com.au', 'Fare Trim');
+//                    $message->from('info@faretrim.com.au', 'Fare Trim');
                 });
             }
         }

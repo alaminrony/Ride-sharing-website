@@ -21,6 +21,8 @@
             </div>
         </div>
     </footer>
+
+  
         
         <script src="{{asset('frontEnd/assets/js/jquery-1.12.4.min.js')}}"></script>
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>

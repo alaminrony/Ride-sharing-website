@@ -10,7 +10,7 @@
                 <div class="card-header border-0">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h3 class="mb-0">CMS Page Create<i class="nc-icon nc-single-02"></i></h3>
+                            <h3 class="mb-0"><i class="fa fa-plus-square"></i> CMS Page Create</h3>
                         </div>
                     </div>
                 </div>
@@ -41,10 +41,10 @@
                                         <i class="nc-icon nc-single-02"></i>
                                     </span>
                                 </div>
-                                {!! Form::text('link',old('link'),['class' => 'form-control','placeholder' =>'Enter Page Link']) !!}
-                                @if ($errors->has('link'))
+                                {!! Form::text('slug',old('slug'),['class' => 'form-control','placeholder' =>'Enter Page slug']) !!}
+                                @if ($errors->has('slug'))
                                 <span class="invalid-feedback" style="display: block;" role="alert">
-                                    <strong>{{ $errors->first('link') }}</strong>
+                                    <strong>{{ $errors->first('slug') }}</strong>
                                 </span>
                                 @endif
                             </div>

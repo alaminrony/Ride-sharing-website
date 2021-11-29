@@ -16,10 +16,10 @@
                             <a href="{{route('cab-body-type.create')}}" class="btn btn-sm btn-primary">@lang('lang.ADD_BODY_TYPE')</a>
                         </div>
                     </div>
-                     @if ($message = Session::get('success'))
-                        <div class="alert alert-success">
-                            <p>{{ $message }}</p>
-                        </div>
+                    @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <p>{{ $message }}</p>
+                    </div>
                     @endif
                 </div>
                 <div class="table-responsive">
@@ -38,22 +38,21 @@
                                 <td>{{$cabtype->type_name}}</td>
                                 <td>{{$cabtype->description}}</td>
                                 <td>{{ date_format($cabtype->created_at,"d-M-Y ") }}</td>
-                               
                                 <td>
                                     <form action="{{ route('cab-body-type.destroy',$cabtype->id) }}" method="POST">
                                         <div class="btn-group">
-                                        <a class="btn btn-sm btn-primary" href="{{ route('cab-body-type.edit',$cabtype->id) }}">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
+                                            <a class="btn btn-sm btn-primary" href="{{ route('cab-body-type.edit',$cabtype->id) }}">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
 
-                                        <a class="btn btn-sm btn-info" onclick="show({{$cabtype->id}})" href="#">
-                                            <i class="fa fa-info"></i>
-                                        </a>
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" onclick="return confirm('Are you sure')" class="btn btn-sm btn-danger">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
+                                            <a class="btn btn-sm btn-info" onclick="show({{$cabtype->id}})" href="#">
+                                                <i class="fa fa-info"></i>
+                                            </a>
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" onclick="return confirm('Are you sure')" class="btn btn-sm btn-danger">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
                                         </div>
                                     </form>
                                 </td>
@@ -62,7 +61,10 @@
                         </tbody>
                     </table>
                 </div>
-                {{ $cabtypes->links() }}
+                <div class="ml-3">
+                    {{ $cabtypes->links() }}
+                </div>
+
             </div>
         </div>
     </div>
@@ -76,11 +78,11 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Cab Type details</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -90,14 +92,13 @@
 </div>
 {{-- modal end--}}
 <script>
-function show(id) {
-var id = id;
-$.get("{{ route('cab-body-type.index') }}" +'/' + id , function (data) {
+    function show(id) {
+    var id = id;
+    $.get("{{ route('cab-body-type.index') }}" + '/' + id, function (data) {
 
-$('#detailsModal').modal('show');
-$('.modal-body').html(data);
-
-})
-}
+    $('#detailsModal').modal('show');
+    $('.modal-body').html(data);
+    })
+    }
 </script>
 @endsection

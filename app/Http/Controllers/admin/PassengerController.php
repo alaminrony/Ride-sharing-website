@@ -104,7 +104,7 @@ class PassengerController extends Controller
 
                 Mail::send('email-template.passengerRegister',['data'=>$data], function($message) use($toEmail, $toName,$subject) {
                     $message->to($toEmail, $toName)->subject($subject);
-                    $message->from('info@faretrim.com.au', 'Fare Trim');
+//                    $message->from('info@faretrim.com.au', 'Fare Trim');
                 });
             }
             return redirect()->route('passenger.index')->with('success','Passenger Added successfully');

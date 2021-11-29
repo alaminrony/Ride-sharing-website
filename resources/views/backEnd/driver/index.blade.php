@@ -47,22 +47,22 @@
                                 <td>
                                     <form action="{{ route('driver.destroy',$driver->id) }}" method="POST">
                                         <div class="btn-group">
-                                        <a class="btn btn-sm btn-primary" href="{{ route('driver.edit',$driver->id) }}">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                        <a class="btn btn-sm btn-info" onclick="show({{$driver->id}})" href="#">
-                                            <i class="fa fa-info"></i>
-                                        </a>
-                                        <a class="btn btn-sm btn-danger" title="Add to Trash" onclick="return confirm('Are you sure')" href="{{ route('driver.trash',$driver->id) }}">
-                                            <i class="fa fa-trash"></i>
-                                        </a>
-                                        <a href="{{url('driver-bill/search?driver_id='.$driver->id)}}" class="btn btn-sm btn-primary" title="bill summery"><i class="  fa fa-certificate"></i></a>
-                                        <a href="{{url('cab/driver/search?driver_id='.$driver->id)}}" class="btn btn-sm btn-info" title="cab list"><i class="  fa fa-certificate"></i></a>
-                                        {{--  @csrf
+                                            <a class="btn btn-sm btn-primary" href="{{ route('driver.edit',$driver->id) }}">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            <a class="btn btn-sm btn-info" onclick="show({{$driver->id}})" href="#">
+                                                <i class="fa fa-info"></i>
+                                            </a>
+                                            <a class="btn btn-sm btn-danger" title="Add to Trash" onclick="return confirm('Are you sure')" href="{{ route('driver.trash',$driver->id) }}">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
+                                            <a href="{{url('driver-bill/search?driver_id='.$driver->id)}}" class="btn btn-sm btn-primary" title="bill summery"><i class="  fa fa-certificate"></i></a>
+                                            <a href="{{url('cab/driver/search?driver_id='.$driver->id)}}" class="btn btn-sm btn-info" title="cab list"><i class="  fa fa-certificate"></i></a>
+                                            {{--  @csrf
                                         @method('DELETE')
-                                        <button type="submit" onclick="return confirm('Are you sure')" class="btn btn-sm btn-danger">
-                                        <i class="fa fa-trash"></i>
-                                        </button> --}}
+                                            <button type="submit" onclick="return confirm('Are you sure')" class="btn btn-sm btn-d                                                anger">
+                                                    <i class="fa fa-tras                                                h"></i>
+                                            </button> --}}
                                         </div>
                                     </form>
                                 </td>
@@ -71,7 +71,10 @@
                         </tbody>
                     </table>
                 </div>
-                {{ $drivers->links() }}
+                <div class="ml-2">
+                    {{ $drivers->links() }} 
+                </div>
+
             </div>
         </div>
     </div>
@@ -83,11 +86,11 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Driver details</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -97,26 +100,24 @@
 </div>
 {{-- modal end--}}
 <script>
-   
-        var driverId = "{{Request::get('driverId')}}";
-        if(driverId != ''){
-            $.get("{{ route('driver.index') }}" +'/' + driverId , function (data) {
 
-$('#driverDetails').modal('show');
-$('.modal-body').html(data);
+    var driverId = "{{Request::get('driverId')}}";
+    if (driverId != ''){
+    $.get("{{ route('driver.index') }}" + '/' + driverId, function (data) {
 
-})
-           }
-       
-    
-function show(id) {
-var id = id;
-$.get("{{ route('driver.index') }}" +'/' + id , function (data) {
+    $('#driverDetails').modal('show');
+    $('.modal-body').html(data);
+    })
+    }
 
-$('#driverDetails').modal('show');
-$('.modal-body').html(data);
 
-})
-}
+    function show(id) {
+    var id = id;
+    $.get("{{ route('driver.index') }}" + '/' + id, function (data) {
+
+    $('#driverDetails').modal('show');
+    $('.modal-body').html(data);
+    })
+            }
 </script>
 @endsection

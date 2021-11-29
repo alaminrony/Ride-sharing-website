@@ -11,7 +11,7 @@ class PassengerSliderController extends Controller {
 
     public function index() {
 //        echo "<pre>";print_r('hello');exit;
-        $passengerSlider = PassengerSlider::orderBy('id','desc')->paginate(5);
+        $passengerSlider = PassengerSlider::orderBy('id', 'desc')->paginate(5);
         return view('backEnd.passengerSlider.index', compact('passengerSlider'));
     }
 
@@ -28,11 +28,14 @@ class PassengerSliderController extends Controller {
 
         $slider = new PassengerSlider;
         $slider->status = $request->status;
+
         if ($files = $request->file('image')) {
             $imagePath = 'uploads/passengerSlider/';
             $imageName = $imagePath . '' . uniqid() . "." . date('Ymd') . "." . $files->getClientOriginalExtension();
             $image = Image::make($files)->orientate();
-            $image->resize(280, 490)->save($imageName);
+            $image->resize(280, 490, function($constraint) {
+                $constraint->aspectRatio();
+            })->save($imageName);
             $slider->image = $imageName;
         }
 
@@ -60,6 +63,7 @@ class PassengerSliderController extends Controller {
 
 
         $passengerSlider->status = $request->status;
+
         if ($files = $request->file('image')) {
             if (file_exists($passengerSlider->image)) {
                 @unlink($passengerSlider->image);
@@ -67,8 +71,10 @@ class PassengerSliderController extends Controller {
             $imagePath = 'uploads/passengerSlider/';
             $imageName = $imagePath . '' . uniqid() . "." . date('Ymd') . "." . $files->getClientOriginalExtension();
             $image = Image::make($files)->orientate();
-            $image->resize(280, 490)->save($imageName);
-            $passengerSlider->image = $imageName;
+            $image->resize(280, 490, function($constraint) {
+                $constraint->aspectRatio();
+            })->save($imageName);
+            $slider->image = $imageName;
         }
 
         $passengerSlider->save();

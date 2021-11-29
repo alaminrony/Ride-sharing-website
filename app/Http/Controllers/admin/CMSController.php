@@ -40,7 +40,7 @@ class CMSController extends Controller {
 //        echo "<pre>";print_r($request->all());exit;
         $request->validate([
             'title' => 'required',
-            'link' => 'required',
+            'slug' => 'required',
             'description' => 'required',
             'status' => 'required',
         ]);
@@ -48,7 +48,7 @@ class CMSController extends Controller {
         $target = new CmsPage;
         $target->title = $request->title;
         $target->description = $request->description;
-        $target->link = urlencode($request->link);
+        $target->link = urlencode($request->slug);
         $target->meta_title = !empty($request->meta_title)?$request->meta_title :'';
         $target->meta_description = !empty($request->meta_description)?$request->meta_description :'';
         $target->status = $request->status;
@@ -89,14 +89,14 @@ class CMSController extends Controller {
         $target = CmsPage::where('id', $request->id)->first();
         $request->validate([
             'title' => 'required',
-            'link' => 'required',
+            'slug' => 'required',
             'description' => 'required',
             'status' => 'required',
         ]);
 
         $target->title = $request->title;
         $target->description = $request->description;
-        $target->link = urlencode($request->link);
+        $target->link = urlencode($request->slug);
         $target->meta_title = !empty($request->meta_title)?$request->meta_title :'';
         $target->meta_description = !empty($request->meta_description)?$request->meta_description :'';
         $target->status = $request->status;

@@ -17,7 +17,7 @@ class HomeController extends Controller {
 
     public function index() {
         $latestNews = LatestNews::where('status', '1')->latest()->take(3)->get();
-        $homeSlider = HomeSlider::where('status', '1')->latest()->take(5)->get();
+        $homeSlider = HomeSlider::where('status', '1')->orderBy('id','asc')->get();
         $sectionThree = TextWidget::where('position', '1')->where('status', '1')->first();
         // echo "<pre>";print_r($sectionThree->toArray());exit;
         $title = 'Home';
@@ -152,5 +152,12 @@ class HomeController extends Controller {
 //         echo "<pre>";print_r($cmsPage);exit;
         return view('frontEnd.guideline')->with(compact('cmsPage'));
     }
+
+    public function openModal(){
+         $modal = view('frontEnd.ajax.modal')->render();
+         return response()->json(['data' => $modal]);
+    }
+    
+    
 
 }

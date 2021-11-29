@@ -67,7 +67,10 @@
                         </tbody>
                     </table>
                 </div>
-                {{$passengers->links()}}
+                <div class="ml-4">
+                    {{$passengers->links()}}
+                </div>
+                
             </div>
         </div>
     </div>

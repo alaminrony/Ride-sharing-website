@@ -45,7 +45,7 @@ function time_subtract($datetime1, $datetime2) {
     echo round($days, 2);
 }
 
-function sendPushNotification($fcm_tokens, $title, $message, $notification_id) {
+function sendPushNotification($fcm_tokens, $title, $message, $notification_id = NULL) {
     $fcm_server_key = 'AAAAzS92odE:APA91bGdH55NzQ51zqWBtdUeOUuPT6APRnCWtwvZle4w1AWqOYGR7V6Ez9Jq97y1Il4hWAfqGKsGaJv16kRUSTLQPo__cJGTEX7lE7VxbqZjwHuBdrJezRarlAEE9iI80PWPcYHaw0x9';
 
     $url = "https://fcm.googleapis.com/fcm/send";

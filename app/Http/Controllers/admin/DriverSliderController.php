@@ -32,7 +32,9 @@ class DriverSliderController extends Controller {
             $imagePath = 'uploads/driverSlider/';
             $imageName = $imagePath . '' . uniqid() . "." . date('Ymd') . "." . $files->getClientOriginalExtension();
             $image = Image::make($files)->orientate();
-            $image->resize(280, 490)->save($imageName);
+            $image->resize(280, 490, function($constraint) {
+                $constraint->aspectRatio();
+            })->save($imageName);
             $slider->image = $imageName;
         }
 
@@ -67,7 +69,9 @@ class DriverSliderController extends Controller {
             $imagePath = 'uploads/driverSlider/';
             $imageName = $imagePath . '' . uniqid() . "." . date('Ymd') . "." . $files->getClientOriginalExtension();
             $image = Image::make($files)->orientate();
-            $image->resize(280, 490)->save($imageName);
+            $image->resize(280, 490, function($constraint) {
+                $constraint->aspectRatio();
+            })->save($imageName);
             $driverSlider->image = $imageName;
         }
 

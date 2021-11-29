@@ -4,7 +4,7 @@
 <section class="driver_dashboard_area">
     <div class="container">
         <div class="dashboard-grid">
-             @include('frontEnd.passenger.passenger-left-sidebar')
+            @include('frontEnd.passenger.passenger-left-sidebar')
             <div class="right-dashbord-content">
                 <div class="header">
                     <p>Change Password</p>
@@ -29,37 +29,43 @@
 @endsection
 @push('script')
 <script type="text/javascript">
-        $(document).on('click', '#passUpdateBtn', function (event) {
-            event.preventDefault();
-            var updatePassword = new FormData($('#updatePasswordForm')[0]);
-            $.ajax({
-                url: "{{ route('passenger.updatePassword')}}",
-                data: updatePassword,
-                dataType: "json",
-                cache: false,
-                contentType: false,
-                processData: false,
-                type: 'POST',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function (data) {  
-                    $('#old_password_error').text('');
-                    $('#password_error').text('');
-                    $('#password_confirmation_error').text('');
-                    if (data.errors) {
-                        $('#old_password_error').text(data.errors.old_password);
-                        $('#password_error').text(data.errors.password);
-                        $('#password_confirmation_error').text(data.errors.password_confirmation);
-                    }
-                    if (data.response == 'error') {
-                        $('#old_password_error').text(data.message);
-                    }
-                    if (data.response == 'success') {
-                        $('.alert-success').show().text('Password update successfully!!');
-                    }
+    $(document).on('click', '#passUpdateBtn', function (event) {
+        event.preventDefault();
+        var updatePassword = new FormData($('#updatePasswordForm')[0]);
+        $.ajax({
+            url: "{{ route('passenger.updatePassword')}}",
+            data: updatePassword,
+            dataType: "json",
+            cache: false,
+            contentType: false,
+            processData: false,
+            type: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            beforeSend: function () {
+                $('#ajaxLoader').show();
+            },
+            success: function (data) {
+                $('#old_password_error').text('');
+                $('#password_error').text('');
+                $('#password_confirmation_error').text('');
+                if (data.errors) {
+                    $('#old_password_error').text(data.errors.old_password);
+                    $('#password_error').text(data.errors.password);
+                    $('#password_confirmation_error').text(data.errors.password_confirmation);
                 }
-            });
+                if (data.response == 'error') {
+                    $('#old_password_error').text(data.message);
+                }
+                if (data.response == 'success') {
+                    $('.alert-success').show().text('Password update successfully!!');
+                }
+            },
+            complete: function () {
+                $('#ajaxLoader').hide();
+            },
         });
+    });
 </script>
 @endpush

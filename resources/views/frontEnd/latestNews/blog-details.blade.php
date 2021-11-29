@@ -24,7 +24,7 @@
     <div class="container">
         <div class="blog-details-content">
             <div class="blog-grid-details-main-content">
-                <div class="blog-details-left-content">
+                <div class="blog-details-left-content" style="background: #ffff;padding: 20px;border-radius: 10px;">
                     <div class="blog-details-header">
                         <h4>{{$latestNews->title}}</h4>
                     </div>
@@ -35,11 +35,10 @@
                         <img src="{{asset($latestNews->details_image)}}" alt="bigimg" class="img-fluid">
                     </div>
                     <div class="detail-main-content">
-                        <p class="mt-4">{{$latestNews->description}}</p>
+                        <p class="mt-4">{!!$latestNews->description!!}</p>
                     </div>
                 </div>
-                <div class="blog-details-right-content">
-
+                <div class="blog-details-right-content" style="height: 600px;">
                     <div class="blog mt-3">
                         <p class="blog">Latest News</p>
                         @if($sideBarNews->isNotEmpty())

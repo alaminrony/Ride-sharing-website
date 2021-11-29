@@ -38,11 +38,10 @@
                             <hr />
                             <div class="Position-Middle">OR</div>
                             <div class="driver-sign-up-2btn">
-                                <button class="driver-sign-up-fb-btn"><img class="mr-2" src="{{asset('frontEnd/assets/img/driver-sign-up/fb.png')}}" alt=""> Log in with Facebook</button> <br>
-                                <button class="driver-sign-up-google-btn"><img class="mr-2" src="{{asset('frontEnd/assets/img/driver-sign-up/google.png')}}" alt=""> Connect with Google</button>
-                                <!--<p>Have an account? <span><a href="{{url('/front-login')}}">Log In</a></span></p>-->
-                                <p>Have an account? <span><a href="{{url('passengerLogin')}}">Log In</a></span></p>
-                            </div>
+                        <button onclick="window.open('{{url('passenger/login/facebook')}}', '_self'); return false;" class="driver-sign-up-fb-btn"><img class="mr-2" src="{{asset('frontEnd/assets/img/driver-sign-up/fb.png')}}" alt=""> Log in with Facebook</button><br>
+                        <button onclick="window.open('{{url('passenger/login/google')}}', '_self'); return false;" class="driver-sign-up-google-btn"><img class="mr-2" src="{{asset('frontEnd/assets/img/driver-sign-up/google.png')}}" alt=""> Connect with Google</button>
+                        <p>Have an account? <span><a href="{{url('passengerLogin')}}">Login?</a></span></p>
+                    </div>
                         </div>
                     </section>
 
@@ -177,16 +176,13 @@
                             <hr />
                             <div class="Position-Middle">OR</div>
                             <div class="driver-sign-up-2btn">
-                                <button class="driver-sign-up-fb-btn"><img class="mr-2" src="{{asset('frontEnd/assets/img/driver-sign-up/fb.png')}}" alt=""> Log in with Facebook</button> <br>
-                                <button class="driver-sign-up-google-btn"><img class="mr-2" src="{{asset('frontEnd/assets/img/driver-sign-up/google.png')}}" alt=""> Connect with Google</button>
-                                <!--                                <div class="form-check checkBox mb-3">
-                                                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                                                    <label class="form-check-label" for="exampleCheck1">I agree to the <strong>faretrim</strong> <span><a href="#">terms and conditions.</a></span></label>
-                                                                </div>-->
-                                <p>Have an account? <span><a href="{{url('passenger-signup')}}">Sign Up?</a></span></p>
-                            </div>
+                        <button onclick="window.open('{{url('passenger/login/facebook')}}', '_self'); return false;" class="driver-sign-up-fb-btn"><img class="mr-2" src="{{asset('frontEnd/assets/img/driver-sign-up/fb.png')}}" alt=""> Log in with Facebook</button><br>
+                        <button onclick="window.open('{{url('passenger/login/google')}}', '_self'); return false;" class="driver-sign-up-google-btn"><img class="mr-2" src="{{asset('frontEnd/assets/img/driver-sign-up/google.png')}}" alt=""> Connect with Google</button>
+                        <p>Have an account? <span><a href="{{url('passengerLogin')}}">Login</a></span></p>
+                    </div>
                         </div>
                     </section>
+
 
                     <section id="driverEmailField" style="display:none">
                         <div class="driver-signup animate__animated animate__fadeInLeft animate__delay-1s fix overflow-hidden">
@@ -215,14 +211,10 @@
                             <hr />
                             <div class="Position-Middle">OR</div>
                             <div class="driver-sign-up-2btn">
-                                <button class="driver-sign-up-fb-btn"><img class="mr-2" src="{{asset('frontEnd/assets/img/driver-sign-up/fb.png')}}" alt=""> Log in with Facebook</button> <br>
-                                <button class="driver-sign-up-google-btn"><img class="mr-2" src="{{asset('frontEnd/assets/img/driver-sign-up/google.png')}}" alt=""> Connect with Google</button>
-                                <div class="form-check checkBox mb-3">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">I agree to the <strong>faretrim</strong> <span><a href="{{url('terms-and-condition')}}">terms and conditions.</a></span></label>
-                                </div>
-                                <p>Have an account? <span><a href="{{url('passenger-signup')}}">Sign Up?</a></span></p>
-                            </div>
+                        <button onclick="window.open('{{url('passenger/login/facebook')}}', '_self'); return false;" class="driver-sign-up-fb-btn"><img class="mr-2" src="{{asset('frontEnd/assets/img/driver-sign-up/fb.png')}}" alt=""> Log in with Facebook</button><br>
+                        <button onclick="window.open('{{url('passenger/login/google')}}', '_self'); return false;" class="driver-sign-up-google-btn"><img class="mr-2" src="{{asset('frontEnd/assets/img/driver-sign-up/google.png')}}" alt=""> Connect with Google</button>
+                        <p>Have an account? <span><a href="{{url('passengerLogin')}}">Login</a></span></p>
+                    </div>
                         </div>
                     </section>
             </form>
@@ -257,7 +249,7 @@
                     <div class="driver-sign-up-2btn">
                         <button onclick="window.open('{{url('passenger/login/facebook')}}', '_self'); return false;" class="driver-sign-up-fb-btn"><img class="mr-2" src="{{asset('frontEnd/assets/img/driver-sign-up/fb.png')}}" alt=""> Log in with Facebook</button><br>
                         <button onclick="window.open('{{url('passenger/login/google')}}', '_self'); return false;" class="driver-sign-up-google-btn"><img class="mr-2" src="{{asset('frontEnd/assets/img/driver-sign-up/google.png')}}" alt=""> Connect with Google</button>
-                        <p>Have an account? <span><a href="{{url('driver-signup')}}">Sign Up?</a></span></p>
+                        <p>Have an account? <span><a href="{{url('passengerLogin')}}">Login</a></span></p>
                     </div>
                 </div>
             </section>
@@ -275,7 +267,7 @@
                         <span class="verification">Verification Code has been sent to your phone</span>
                         <div class="text-right resend-btn">
                             <a href="#">
-                                <button>Resend</button>
+                                <button id="resendOtp">Resend</button>
                             </a>
                         </div>
                         <div class="gridInput">
@@ -291,7 +283,7 @@
                             <button class="driver-sign-up-btn">Next</button>
                         </a>
                         <div class="have-account">
-                            <p class="font-weight-normal">Have an account? <span><a href="{{url('driverLogin')}}">Log In</a></span></p>
+                            <p class="font-weight-normal">Have an account? <span><a href="{{url('passengerLogin')}}">Log In</a></span></p>
                         </div>
                     </div>
                 </div>

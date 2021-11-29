@@ -41,7 +41,6 @@
                             <div class="driver-sign-up-2btn">
                                 <button class="driver-sign-up-fb-btn"><img class="mr-2" src="{{asset('frontEnd/assets/img/driver-sign-up/fb.png')}}" alt=""> Log in with Facebook</button> <br>
                                 <button class="driver-sign-up-google-btn"><img class="mr-2" src="{{asset('frontEnd/assets/img/driver-sign-up/google.png')}}" alt=""> Connect with Google</button>
-                                <!--<p>Have an account? <span><a href="{{url('/front-login')}}">Log In</a></span></p>-->
                                 <p>Have an account? <span><a href="{{url('driverLogin')}}">Log In</a></span></p>
                             </div>
                         </div>
@@ -356,7 +355,7 @@
                         <span class="verification">Verification Code has been sent to your phone</span>
                         <div class="text-right resend-btn">
                             <a href="#">
-                                <button>Resend</button>
+                                <button id="resendOtp">Resend</button>
                             </a>
                         </div>
                         <div class="gridInput">

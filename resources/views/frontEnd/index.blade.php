@@ -9,7 +9,7 @@
                     <div class="slider_table">
                         <div class="slider_main">
                             <h1 class="animate__animated animate__fadeInUp animate__delay-1s"><span>Journeys </span>are better together</h1>
-                            <p class="animate__animated animate__fadeInUp animate__delay-2s">Save money. My Trip My Fare. FareTrim</p>
+                            <p class="animate__animated animate__fadeInUp animate__delay-2s">Save money. My Trip My Fare. faretrim</p>
                             <div class="slider_icon animate__animated animate__fadeInUp animate__delay-3s">
                                 <ul class="icons">
                                     <li><a href="#"><img src="{{asset('frontEnd/assets/img/apple_icon.png')}}" alt=""></a></li>
@@ -31,7 +31,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h1 class="section_title animate__animated animate__fadeInUp animate__delay-2s">
-                    How fareTrim Works
+                    How faretrim Works
                 </h1>
             </div>
         </div>
@@ -93,7 +93,7 @@
         <div class="row">
             <div class="col-md-12 animate__animated animate__fadeInUp animate__delay-2s">
                 <h1 class="feature_title">
-                    Why FareTrim
+                    Why faretrim
                 </h1>   
             </div>
         </div>
@@ -173,7 +173,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 animate__animated animate__fadeInUp animate__delay-2s">
-                <h1 class="section_title">FareTrim Pricing Estimator</h1>
+                <h1 class="section_title">faretrim Pricing Estimator</h1>
             </div>
         </div>
         <div class="row">
@@ -253,7 +253,7 @@
                     <a href="{{url("latest-news/{$news->id}/details")}}"><img src="{{asset($news->image)}}" alt=""></a>
                     <p class="news_date">{{date('j M Y \a\t h:i A',strtotime($news->created_at))}}</p>
                     <a href="{{url("latest-news/{$news->id}/details")}}"><p class="news_description">{{$news->title}}</p></a>
-                    <a href="{{url("latest-news/{$news->id}/details")}}"><p class="text-dark">{{Str::limit($news->description,80)}}</p></a>
+                    <a class="text-dark" href="{{url("latest-news/{$news->id}/details")}}">{!!Str::limit($news->description,80)!!}</a>
                 </div>
             </div>
             @endforeach
@@ -337,6 +337,16 @@
     </div>
 </section>
 @include('frontEnd.layouts.download-app')
+
+<!--view  Modal -->
+<div class="modal fade" id="viewModal" tabindex="-1" role="basic" aria-hidden="false">
+    <div class="modal-dialog">
+        <div id="viewModalShow">
+        </div>
+    </div>
+</div>
+<!--end view Modal -->
+
 @endsection
 @push('script')
 <script src="https://maps.googleapis.com/maps/api/js?libraries=places" type="text/javascript"></script>
@@ -510,4 +520,25 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxuo3YR2wuXgT4maohLxkTp1QFEuTLz1Q&libraries=places&callback=initMap"
         async defer>
 </script>
+<!-- <script type="text/javascript">
+     $(window).load(function(){  
+     // alert('yes');return false;      
+   // $('#myModal').modal('show');
+   $('#viewModal').modal('show');
+
+            // $.ajax({
+            //     url: "{{url('open-modal')}}",
+            //     type: "post",
+            //     dataType: "json",
+            //     headers: {
+            //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            //     },
+            //     success: function (data) {
+            //         alert(data);return false;
+            //         $('#viewModal').modal('show');
+            //         $('#viewModalShow').html(data.data);
+            //     }
+            // });
+    }); 
+</script> -->
 @endpush

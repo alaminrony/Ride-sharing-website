@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StripePaymentController;
 
 /*
   |--------------------------------------------------------------------------
@@ -41,12 +42,15 @@ Route::get('grid-list-latest-news', 'frontEnd\HomeController@gridListLatestNews'
 Route::get('latest-news/{id}/details', 'frontEnd\HomeController@latestNewsDetails');
 Route::get('latest-news-by-keyword/{keywords}/', 'frontEnd\HomeController@latestNewsByKeywords');
 Route::post('front/distanceAndDuration', 'frontEnd\HomeController@distanceAndDuration')->name('front.distanceAndDuration');
+
 Route::get('safety-page', 'frontEnd\HomeController@safetyPage');
 Route::get('terms-and-condition', 'frontEnd\HomeController@termsAndCondition');
 Route::get('faq-page', 'frontEnd\HomeController@faqPage');
 Route::get('driver-guideline', 'frontEnd\HomeController@guideline');
+Route::post('open-modal', 'frontEnd\HomeController@openModal');
+
 //Contact us page front end
-Route::get('contact-us', 'frontEnd\ContactController@index');
+Route::get('contact-us', 'frontEnd\ContactController@index')->name('contactUs');
 Route::post('helpAndSupport', 'frontEnd\ContactController@helpAndSupport');
 //End Contact us page front end
 //Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'admin']], function () {
@@ -64,11 +68,8 @@ Route::group(['namespace' => 'frontEnd\driver'], function () {
     Route::get('mail-verification-success', 'DriverLoginController@mailVerificationSuccess')->name('driver.mail-verification-success');
     Route::post('phoneExistsForgetPass', 'DriverLoginController@phoneExistsForgetPass')->name('driver.phoneExistsForgetPass');
     Route::get('driver-page', 'DriverLoginController@driverPage')->name('driver.driverPage');
-    
-
     Route::post('resetPassword', 'DriverLoginController@resetPassword')->name('driver.resetPassword');
-    Route::get('driver/login/{provider}', 'DriverSocialLoginController@redirect');
-    Route::get('login/{provider}/callback', 'DriverSocialLoginController@callback');
+    
 });
 
 Route::group(['namespace' => 'frontEnd\passenger'], function () {
@@ -85,9 +86,22 @@ Route::group(['namespace' => 'frontEnd\passenger'], function () {
     Route::post('passenger/phoneExistsForgetPass', 'PassengerOperationController@phoneExistsForgetPass')->name('passenger.phoneExistsForgetPass');
     Route::post('passenger/resetPassword', 'PassengerOperationController@resetPassword')->name('passenger.resetPassword');
     Route::get('rider-page', 'PassengerOperationController@riderPage')->name('passenger.riderPage');
-//    Route::get('passenger/login/facebook', 'PassengerOperationController@redirectToProvider');
-//    Route::get('login/facebook/callback', 'PassengerOperationController@handleProviderCallback');
 });
+
+Route::group(['namespace' => 'frontEnd'], function () {
+    Route::get('driver/login/{provider}', 'SocialLoginController@redirect');
+    Route::get('passenger/login/{provider}', 'SocialLoginController@redirect');
+    Route::get('login/{provider}/callback', 'SocialLoginController@callback');
+});
+
+Route::get('stripe', [StripePaymentController::class, 'stripe']);
+Route::post('stripe', [StripePaymentController::class, 'stripePost'])->name('stripe.post');
+Route::get('stripe-card-edit', [StripePaymentController::class, 'stripeCardEdit']);
+Route::post('stripe-card-update', [StripePaymentController::class, 'stripeCardUpdate']);
+Route::get('stripe-charge-add', [StripePaymentController::class, 'stripeChargeAdd']);
+Route::get('thanks-stripe', [StripePaymentController::class, 'stripeThanks']);
+Route::get('failed-stripe', [StripePaymentController::class, 'stripeFailed']);
+Route::get('canceled-stripe', [StripePaymentController::class, 'canceledStripe']);
 
 
 
@@ -138,8 +152,8 @@ Route::group(['namespace' => 'frontEnd\passenger', 'middleware' => ['passenger']
 });
 
 
-Route::group(['middleware' => 'auth', 'checkStatus'], function () {
-    Route::get('/dashboard', 'HomeController@index')->name('home');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('dashboard', 'HomeController@index')->name('admin.home');
 
     Route::post('notificationUpdate', 'admin\AdminNotificationController@notificationUpdate');
     Route::post('search', 'admin\AdminNotificationController@search');
@@ -191,6 +205,7 @@ Route::group(['middleware' => 'auth', 'checkStatus'], function () {
     Route::resource('subscriber', 'admin\SubscriberController');
     // contact
     Route::resource('contact', 'admin\ContactUsController');
+    Route::post('admin/contact-view', 'admin\ContactUsController@contactView');
     // Slider
     Route::resource('slider', 'admin\MainSliderController');
     // Ride Apps
@@ -199,13 +214,20 @@ Route::group(['middleware' => 'auth', 'checkStatus'], function () {
     Route::resource('settings', 'admin\SettingsController');
     // cab ride
     Route::get('cab-ride/pending-rides', 'admin\CabRideController@pending');
+    Route::get('cab-ride/complete-rides', 'admin\CabRideController@completeRide');
     Route::get('cab-ride/filter', 'admin\CabRideController@filter');
+    Route::get('cab-ride/printPDFExcel', 'admin\CabRideController@printPDFExcel');
     Route::get('cab-ride/discount', 'admin\CabRideController@discount');
     Route::resource('cab-ride', 'admin\CabRideController');
     // cancel ride
     Route::resource('ride-cancel', 'admin\RideCancelController');
+    Route::post('ride-cancel/show', 'admin\RideCancelController@show');
+    
     // cancel issue
     Route::resource('cancel-issue', 'admin\CancelIssueController');
+
+    // Taxi Operator 
+    Route::resource('taxi-operator', 'admin\TaxiOperatorController');
 
     // Admin bill setting
     Route::get('fare-setting', 'admin\AdminBillSettingController@index')->name('fare-setting.index');
@@ -265,6 +287,7 @@ Route::group(['middleware' => 'auth', 'checkStatus'], function () {
     Route::get('admin/text-widget/edit/{id}', 'admin\TextWidgetController@edit')->name('text-widget.edit');
     Route::patch('admin/text-widget/update/{id}', 'admin\TextWidgetController@update')->name('text-widget.update');
     Route::delete('admin/text-widget/{id}', 'admin\TextWidgetController@delete')->name('text-widget.delete');
+
 });
 
 Route::group(['middleware' => 'auth'], function () {
@@ -272,20 +295,5 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
-// driver authentication
 
-// Route::prefix('driver')
-//     ->as('driver.')
-//     ->group(function() {
-//         Route::get('home', 'Driver\DriverHomeController@index')->name('home');
-// Route::namespace('Auth\Login')
-//       ->group(function() {
-//        Route::get('driver/login', 'DriverController@showLoginForm')->name('login');
-//     Route::post('login', 'DriverController@login')->name('login');
-//     Route::post('logout', 'DriverController@logout')->name('logout');
-//       });
-//  });
 
-// Route::get('/driver/home','Driver\DriverHomeController@index')->name('driver.home');
-
-// Route::get('driver/login', 'Auth\Login\DriverController@showLoginForm')->name('login');

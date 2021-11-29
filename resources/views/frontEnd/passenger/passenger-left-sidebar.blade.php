@@ -38,14 +38,14 @@ $url = end($urlArr);
         <li class="hr-line">
             <div id="clickRideHistory">
                 <a data-toggle="collapse" aria-expanded="true" href="#ride_History">
-                    <p class="d-flex text-white justify-content-between cursorPointer {{$url == 'passenger-ride-history' || $url == 'passenger-ride-complete' || $url == 'passenger-ride-cancel-history'  ? 'sidbar-active-parent' : ''}}" id="rideHistoryActive">
+                    <p class="d-flex text-white justify-content-between cursorPointer {{$url == 'passenger-ride-history' || $url == 'passenger-ride-complete' || $url == 'passenger-ride-cancel-history' || $url == 'passenger-ride-details'  ? 'sidbar-active-parent' : ''}}" id="rideHistoryActive">
                         <span><img class="img-fluid mr-2" src="{{asset('frontEnd/assets/img/dashboard/pro.png')}}" alt="">Ride History</span>
                         <span><i class="fa fa-angle-right"></i></span>
                     </p>
                 </a>
             </div>
 
-            <div id="ride_History" class="collapse {{ $url == 'passenger-ride-history' || $url == 'passenger-ride-complete' || $url == 'passenger-ride-cancel-history' ? 'show' : '' }} ">
+            <div id="ride_History" class="collapse {{ $url == 'passenger-ride-history' || $url == 'passenger-ride-complete' || $url == 'passenger-ride-cancel-history' || $url == 'passenger-ride-details' ? 'show' : '' }} ">
                 <ul style="" class="ml-4">
                     <li>
                         <a href="{{url('passenger-ride-history?passengerId='.$passenger->id)}}" class="{{ $url == 'passenger-ride-history'  ? 'sidbar-active-child' : '' }}">List Ride</a>
@@ -59,6 +59,7 @@ $url = end($urlArr);
                 </ul>
             </div>
         </li>
+        
   
         <li class="hr-line">
             <a href="{{url('passenger-notification?passengerId='.$passenger->id)}}">

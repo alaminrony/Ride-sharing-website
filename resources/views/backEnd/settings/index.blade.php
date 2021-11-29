@@ -18,7 +18,7 @@
                         <p>{{ $message }}</p>
                     </div>
                     @endif
-                    
+
                 </div>
                 <div class="table-responsive">
                     <div class="card-body ">
@@ -40,7 +40,7 @@
                                 @endif
                             </div>
 
-                             <div class="input-group col-md-6">
+                            <div class="input-group col-md-6">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
                                         <i class="nc-icon nc-single-02"></i>
@@ -61,7 +61,7 @@
                                         <i class="nc-icon nc-single-02"></i>
                                     </span>
                                 </div>
-                               {!! Form::text('dateformat',$settings->dateformat,['class' => 'form-control','placeholder' =>Lang::get('lang.TEL')]) !!}
+                                {!! Form::text('dateformat',$settings->dateformat,['class' => 'form-control','placeholder' =>Lang::get('lang.TEL')]) !!}
                                 @if ($errors->has('dateformat'))
                                 <span class="invalid-feedback" style="display: block;" role="alert">
                                     <strong>{{ $errors->first('dateformat') }}</strong>
@@ -74,7 +74,7 @@
                                         <i class="nc-icon nc-single-02"></i>
                                     </span>
                                 </div>
-                               {!! Form::text('timeformat',$settings->timeformat,['class' => 'form-control','placeholder' =>Lang::get('lang.TIME_FORMAT')]) !!}
+                                {!! Form::text('timeformat',$settings->timeformat,['class' => 'form-control','placeholder' =>Lang::get('lang.TIME_FORMAT')]) !!}
                                 @if ($errors->has('timeformat'))
                                 <span class="invalid-feedback" style="display: block;" role="alert">
                                     <strong>{{ $errors->first('timeformat') }}</strong>
@@ -110,10 +110,23 @@
                                 </span>
                                 @endif
                             </div>
-                            
                         </div>
-                        
+
                         <div class="row">
+                            <div class="input-group col-md-6">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class=""></i>Request Distance Km
+                                    </span>
+                                </div>
+                                {!! Form::text('request_distance',$settings->request_distance,['class' => 'form-control','placeholder' =>'Enter request distance KM']) !!}
+                                @if ($errors->has('distance'))
+                                <span class="invalid-feedback" style="display: block;" role="alert">
+                                    <strong>{{ $errors->first('request_distance') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+
                             <div class="input-group col-md-6">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
@@ -130,10 +143,25 @@
                                 @endif
                             </div>
                         </div>
-                        
+                        <div class="row">
+                            <div class="input-group col-md-6">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class=""></i>Pickup Distance Km
+                                    </span>
+                                </div>
+                                {!! Form::text('pickup_distance',$settings->pickup_distance,['class' => 'form-control','placeholder' =>'Enter Pickup distance KM']) !!}
+                                @if ($errors->has('distance'))
+                                <span class="invalid-feedback" style="display: block;" role="alert">
+                                    <strong>{{ $errors->first('pickup_distance') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="card-footer ">
                             <button type="submit" class="btn btn-info btn-round">{{ __('Update') }}</button>
-                          
+
                         </div>
                         {!! Form::close() !!}
                     </div>

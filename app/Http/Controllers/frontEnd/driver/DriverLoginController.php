@@ -10,6 +10,7 @@ use App\Notifications\verifyEmail;
 use App\Driver;
 use App\DriverBill;
 use App\OtpVerify;
+use App\DriverDevice;
 use Validator;
 use Session;
 use Image;
@@ -20,6 +21,7 @@ use App\RideStatus;
 use App\Notification;
 use App\DriverSlider;
 use App\Passenger;
+use App\TextWidget;
 use Laravel\Socialite\Facades\Socialite;
 
 class DriverLoginController extends Controller {
@@ -359,9 +361,16 @@ class DriverLoginController extends Controller {
 
         $driver = Driver::where('email', $email)->first();
 
+
         if ($driver) {
             $driver->mail_verification_status = '1';
             if ($driver->save()) {
+                $fcm_tokens = DriverDevice::where(['driver_id' => $driver->id, 'user_type' => 1])->pluck('token')->toArray();
+                if (!empty($fcm_tokens)) {
+                    $title = "Hello {$driver->full_name}";
+                    $message = "Your Mail Verification complete successfully !!";
+                    sendPushNotification($fcm_tokens, $title, $message);
+                }
                 Session::flash('success', 'Your Mail Verification complete successfully !!');
                 return redirect('mail-verification-success');
 //                return response()->json(['response' => 'success', 'message' => 'Your Email account is activated.', 'email' => $email, 'verified_status' => 1]);
@@ -412,9 +421,8 @@ class DriverLoginController extends Controller {
     }
 
     public function driverProfile(Request $request) {
-
-        if (!empty($request->get('driverId'))) {
-            $driver = Driver::findOrFail($request->get('driverId'));
+        if (!empty($request->driverId)) {
+            $driver = Driver::findOrFail($request->driverId);
         } else {
             return abort(404);
         }
@@ -663,8 +671,10 @@ class DriverLoginController extends Controller {
             return abort(404);
         }
         $vehicleLists = Cab::where('driver_id', $request->driverId)->get();
-//        echo "<pre>";print_r($vehicleLists->toArray());exit;
-        return view('frontEnd.vehicles-list', compact('driver', 'vehicleLists'));
+        $selectedVehicle = Driver::where('id', $request->driverId)->select('cab_id')->first();
+        $selectedVehicleId = $selectedVehicle->cab_id;
+//        echo "<pre>";print_r($selectedVehicle->toArray());exit;
+        return view('frontEnd.vehicles-list', compact('driver', 'vehicleLists', 'selectedVehicleId'));
     }
 
     public function viewVehicle(Request $request) {
@@ -881,7 +891,7 @@ class DriverLoginController extends Controller {
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
-            return response()->json(['errors'=>$validator->errors()]);
+            return response()->json(['errors' => $validator->errors()]);
         }
 
         $driver = Driver::where('phone', $request->phone)->first();
@@ -892,25 +902,24 @@ class DriverLoginController extends Controller {
             return response()->json(['response' => 'error', 'message' => 'Password does not reset']);
         }
     }
-    
-    public function myBill(Request $request){
+
+    public function myBill(Request $request) {
         if (!empty($request->driverId)) {
             $driver = Driver::findOrFail($request->driverId);
         } else {
             return abort(404);
         }
-        
-        $driverBill = DriverBill::orderBy('id','desc')->get();
+
+        $driverBill = DriverBill::orderBy('id', 'desc')->get();
 //        echo "<pre>";print_r($driverBill->toArray());exit;
-        
-        return view('frontEnd.my-bill')->with(compact('driver','driverBill'));
+
+        return view('frontEnd.my-bill')->with(compact('driver', 'driverBill'));
     }
-    
-    public function driverPage(Request $request){
-        $driverSlider = DriverSlider::where('status','1')->latest()->take(5)->get();
-        return view('frontEnd.driver-page',compact('driverSlider'));
+
+    public function driverPage(Request $request) {
+        $driverSlider = DriverSlider::where('status', '1')->orderBy('id', 'asc')->get();
+        $target = TextWidget::where('id', '13')->orderBy('id', 'asc')->first();
+        return view('frontEnd.driver-page', compact('driverSlider', 'target'));
     }
-    
-    
 
 }

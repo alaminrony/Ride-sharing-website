@@ -24,7 +24,7 @@ Route::group([
         ], function ($router) {
     Route::post('phoneExists', 'Api\Driver\Auth\AuthController@phoneExists');
     Route::post('emailExists', 'Api\Driver\Auth\AuthController@emailExists');
-    Route::post('register', 'Api\Driver\Auth\AuthController@register');
+    Route::post('registration', 'Api\Driver\Auth\AuthController@registration');
     Route::post('login', 'Api\Driver\Auth\AuthController@login');
     Route::post('logout', 'Api\Driver\Auth\AuthController@logout');
     Route::post('refresh', 'Api\Driver\Auth\AuthController@refresh');

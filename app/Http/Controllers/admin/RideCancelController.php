@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\RideCancel;
+use App\CabRide;
 use Illuminate\Http\Request;
 
 class RideCancelController extends Controller
@@ -13,13 +14,10 @@ class RideCancelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $rideCancels = RideCancel::query()
-        // ->where('ride_status_id', 3)
-        ->latest()
-        ->paginate(10);
         
+        $rideCancels = CabRide::where('ridestatus_id','3')->latest()->paginate(5);
         return view('backEnd.cabride.cancel',compact('rideCancels'));
     }
 
@@ -50,9 +48,11 @@ class RideCancelController extends Controller
      * @param  \App\RideCancel  $rideCancel
      * @return \Illuminate\Http\Response
      */
-    public function show(RideCancel $rideCancel)
+    public function show(Request $request)
     {
-        //
+        $cabRide = CabRide::where('ridestatus_id','3')->first();
+        $view = view('backEnd.cabride.cancelmodal')->with(compact('cabRide'))->render();
+        return response(['data'=>$view]);
     }
 
     /**

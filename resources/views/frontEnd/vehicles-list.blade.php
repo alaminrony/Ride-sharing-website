@@ -33,7 +33,7 @@
                                 <div class="d-flex">
                                     <p><label class="containerCheckBox mt-2">
                                             <input type="checkbox" <?php
-                                            if ($vehicle->status == '1') {
+                                            if (!empty($selectedVehicleId) && ($selectedVehicleId == $vehicle->id)) {
                                                 echo 'checked';
                                             } else {
                                                 echo '';
